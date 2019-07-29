@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:replace="base :: Meta">...</th:block>
     <title>Registration</title>
 </head>
 <body>
-
+<th:block th:replace="base :: nav">...</th:block>
 <h4>New User Registration</h4>
 <form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post">
 
@@ -42,5 +43,6 @@
     <button type="submit" class="btn btn-default">Submit</button>
 
 </form>
+<th:block th:replace="base :: bootstrap">...</th:block>
 </body>
 </html>

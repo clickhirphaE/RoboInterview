@@ -41,12 +41,12 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public String index(){
         return "index";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/")
     public String login(){
         return "login";
     }
@@ -57,4 +57,6 @@ public class HomeController {
         model.addAttribute("user", userRepository.findByUsername(username));
         return "secure";
     }
+
+
 }

@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:replace="base :: Meta">...</th:block>
     <title>Title</title>
 </head>
 <body>
+
+
 <h2>Secure</h2>
 <a href="/logout">logout</a>
 <h4>email</h4>
 <p th:text="${user.email}"></p><br/>
 <h4>last name</h4>
 <p th:text="${user.lastName}"></p>
+<th:block th:replace="base :: bootstrap">...</th:block>
 </body>
 </html>

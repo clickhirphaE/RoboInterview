@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:replace="base :: Meta">...</th:block>
     <title>Title</title>
 </head>
 <body>
+<th:block th:replace="base :: nav">...</th:block>
 <h1>Login Page</h1>
 <div th:if="${param.error}">
     invalid username or password
@@ -21,5 +23,7 @@
 
     <div> <input type="submit" value="Sign in"/></div>
 </form>
+
+<th:block th:replace="base :: bootstrap">...</th:block>
 </body>
 </html>
