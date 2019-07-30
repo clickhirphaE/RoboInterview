@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:replace="base :: Meta">...</th:block>
-    <title>Title</title>
+    <title>Resume Form</title>
+
 </head>
 <body>
 <th:block th:replace="base :: nav">...</th:block>
-<h2>Secure</h2>
-<a href="/logout">logout</a>
-<h4>email</h4>
-<p th:text="${user.email}"></p><br/>
-<h4>last name</h4>
-<p th:text="${user.lastName}"></p>
+
+
+<form th:action="@{/processresume}" th:object="${resume}" method="post">
+
+
+
+</form>
+
+
+
+
+
 <th:block th:replace="base :: bootstrap">...</th:block>
 </body>
 </html>

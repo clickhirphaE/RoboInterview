@@ -11,23 +11,36 @@
 <body>
 
 <th:block th:fragment="navbar">
-    <div sec:authorize="hasAuthority('USER')">
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link2</a>
+                    <a class="nav-link" href="/home">Home</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-link text-warning" th:inline="text">
                 <span th:text="${#authentication.name}"></span>
                 </li>
+                <div sec:authorize="hasAuthority('USER')">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link3</a>
+                    <a class="nav-link" href="/resumeform">New Resume</a>
                 </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Log Out</a>
+                    </li>
+                </div>
+                <div sec:authorize="!isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Log In</a>
+                </li>
+                </div>
             </ul>
         </div>
     </nav>
-    </div>
+
 </th:block>
 
 <th:block th:fragment="bootstrap">
