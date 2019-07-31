@@ -28,6 +28,7 @@ public class HomeController {
     @RequestMapping("/home")
     public String index(Model model){
             model.addAttribute("resumes", resumeRepository.findAll());
+            model.addAttribute("interviews", interviewRepository.findAll());
         return "index";
     }
 
@@ -40,13 +41,7 @@ public class HomeController {
         return "contact";
     }
 
-//    New Interview Form
-    @GetMapping("/interviewform")
-    public String addInterview(Model model){
-        model.addAttribute("interview", new Interview());
 
-        return "interviewform";
-    }
 
 //    Admin Settings Page
     @GetMapping("/admin")

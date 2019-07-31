@@ -8,6 +8,13 @@
 <body>
 <th:block th:replace="base :: nav">...</th:block>
 
+<form th:action="@{/processinterview}" th:object="${interview}" method="post">
+
+
+
+    <input type="submit" value="Submit">
+</form>
+
 
 <th:block th:replace="base :: bootstrap">...</th:block>
 </body>

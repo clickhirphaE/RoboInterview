@@ -9,7 +9,16 @@
 <th:block th:replace="base :: nav">...</th:block>
 
 <p th:each="resume : ${resumes}">
-    [[${resume.info}]]
+    [[${resume.info}]]<br/>
+    [[${resume.education}]]<br/>
+    [[${resume.experience}]]<br/>
+    [[${resume.skills}]]<br/>
+</p>
+
+<p th:each="interview : ${interviews}">
+        [[{interview.startTime}]]
+        [[{interview.endTime}]]
+        [[{interview.checkTime}]]
 </p>
 
 

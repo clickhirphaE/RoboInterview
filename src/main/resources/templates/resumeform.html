@@ -13,7 +13,24 @@
 <form th:action="@{/processresume}" th:object="${resume}" method="post">
 
         <input type="hidden" th:field="*{id}" />
-        <!--<input type="hidden" th:field="*{info}" th:value="${user.firstName + user.lastName + user.phone + user.email}"/>-->
+       Education:
+            Enter your Education background such as Schools and Degrees.<br/>
+    <textarea rows="4" th:field="*{education}"/>
+    <span th:if="${#fields.hasErrors('education')}"
+          th:errors="*{education}"></span><br/><br/>
+
+       Experience:
+            Enter your work Experience<br/>
+    <textarea rows="4" th:field="*{experience}"/>
+    <span th:if="${#fields.hasErrors('experience')}"
+          th:errors="*{experience}"></span><br/><br/>
+
+        Skills:
+            Enter your Technical Skills.<br/>
+    <textarea rows="4" th:field="*{skills}"/>
+    <span th:if="${#fields.hasErrors('skills')}"
+          th:errors="*{skills}"></span><br/><br/>
+
 
     <input type="submit" value="Submit">
 
