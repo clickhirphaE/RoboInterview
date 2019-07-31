@@ -31,14 +31,6 @@ public class HomeController {
         return "index";
     }
 
-//    New Resume Form
-    @GetMapping("/resumeform")
-    public String addResume(Model model){
-        model.addAttribute("resume", new Resume());
-
-        return "resumeform";
-    }
-
 //    Processing New Resume Forms
     @PostMapping("/processresume")
     public String processResume(){

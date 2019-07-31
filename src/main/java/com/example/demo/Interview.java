@@ -2,6 +2,7 @@ package com.example.demo;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,9 @@ public class Interview {
 
     @ManyToOne
     private JobPosition jobPosition;
+
+    public Interview() {
+    }
 
 
     public long getId() {
