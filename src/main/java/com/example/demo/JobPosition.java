@@ -10,8 +10,14 @@ public class JobPosition {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+
+
+    private String company;
     private String title;
 
+
+
+    private String keywords;
     private Double salary;
 
     private String jobType;
@@ -23,20 +29,35 @@ public class JobPosition {
     @OneToMany(mappedBy = "jobPosition")
     private Set<Interview> jobInterviews;
 
-    public JobPosition(String title, Double salary, String jobType, String description, String address) {
+    public JobPosition(String company, String title, Double salary, String jobType, String description,String keywords, String address) {
         this.title = title;
         this.salary = salary;
         this.jobType = jobType;
         this.description = description;
         this.address = address;
+        this.company=company;
+        this.keywords=keywords;
     }
 
     public long getId() {
         return id;
     }
+    public String getKeywords() {
+        return keywords;
+    }
 
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
     public void setId(long id) {
         this.id = id;
+    }
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getTitle() {
@@ -83,7 +104,8 @@ public class JobPosition {
         return jobInterviews;
     }
 
-    public void setJobInterviews(Set<Interview> jobInterviews) {
+    public void setJobInterviews(Set<Interview> jobInterviews)
+    {
         this.jobInterviews = jobInterviews;
     }
 }

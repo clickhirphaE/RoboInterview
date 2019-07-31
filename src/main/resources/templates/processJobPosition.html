@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="base :: Meta">...</th:block>
+    <title>process Job form</title>
+</head>
+<body>
+<th:block th:replace="base :: nav">...</th:block>
+<h2></h2>
+
+<div class="main-container">
+        <tr th:each="job :${jobs}">
+            <td th:text="${job.company}"></td>
+            <td th:text="${job.title}"></td>
+            <td th:text="${job.salary}"></td>
+            <td th:text="${job.jobType}"></td>
+            <td th:text="${job.description}"></td>
+            <td th:text="${job.keywords}"></td>
+            <td th:text="${job.address}"></td>
+            <div sec:authorize="hasAuthority('ADMIN')">
+
+                <a th:href="@{/update/{id}(id=${job.id})}">Update</a>
+                <a th:href="@{/delete/{id}(id=${job.id})}">Delete</a>
+
+  //Job display here
+    <div sec:authorize="hasAuthority('USER')">
+    <strong><span th:text="${job.title}"></span></strong>
+    <span th:text="${job.company}"> </span><br/>
+    <span th:text="${job.salary}"> </span><br/>
+    <span th:text="${job.jobType}"> </span><br/>
+    <span th:text="${job.description}"> </span><br/>
+    <span th:text="${job.keywords}"> </span><br/>
+    <span th:text="${job.address}"> </span><br/>
+</div>
+</div>
+</tr></div>
+<th:block th:replace="base :: bootstrap">...</th:block>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="base :: Meta">...</th:block>
+    <title>job position form</title>
+</head>
+<body>
+
+<div sec:authorize="hasAuthority('ADMIN')">  //only Admin is authorized to post the new Job openings
+
+<th:block th:replace="base :: nav">...</th:block>
+<h4>Fill out the Job Opening Form below</h4>
+<form autocomplete="off" action="#" th:action="@{/processJobPosition}" th:object="${job}" method="post">
+
+
+    <input type="hidden" th:field="*{id}"/>
+   Job Title<mark><strong>
+    <span th:if="${#fields.hasErrors('title')}"
+          th:errors="*{title}">job title has Error</span></strong></mark>
+    <input type="text" id="title" placeholder="job title"
+           th:field="*{title}"/><br/>
+
+    Company <mark><strong>
+    <span th:if="${#fields.hasErrors('company')}"
+          th:errors="*{company}">company Error</span></strong></mark>
+    <input type="text"  id="company" placeholder="company"
+           th:field="*{company}" /><br/>
+
+    Salary <mark><strong>
+    <span th:if="${#fields.hasErrors('salary')}"
+          th:errors="*{salary}">salary has Error</span></strong></mark>
+    <input type="text" id="salary" placeholder="salary"
+           th:field="*{salary}"/><br/>
+
+   //option for job type ....
+
+    Job Type: <mark><strong>
+    <span th:if="${#fields.hasErrors('jobtype')}"
+          th:errors="*{jobType}">job type has Error</span></strong></mark>
+    <input type="text" id="jobType" placeholder="job type"
+           th:field="*{jobType}"/><br/>
+
+    <!--Job type <mark>-->
+    <!--<select class="select-Jobtype">-->
+        <!--<optgroup label="Job type">-->
+            <!--<option>Full-time</option>-->
+            <!--<option>Part-time</option>-->
+        <!--</optgroup>-->
+    <!--<br/>-->
+
+    Address: <mark><strong>
+    <span th:if="${#fields.hasErrors('address')}"
+          th:errors="*{address}">Address has Error</span></strong></mark>
+    <input type="text" id="address" placeholder="address"
+           th:field="*{address}"/><br/>
+
+    Description: <mark><strong>
+        <textarea rows="3" th:field="*{description}"/>
+    <span th:if="${#fields.hasErrors('description')}"
+          th:errors="*{description}">description has  Error</span></strong></mark></mark><br/>
+    Keyword: <mark><strong>
+      <span th:if="${#fields.hasErrors('keywords')}"
+            th:errors="*{keywords}">keywords has Error</span></strong></mark>
+        <input type="text" id="keywords" placeholder="keywords" th:field="*{keywords}"/><br/>
+
+    </strong>
+    </mark>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>
+<th:block th:replace="base :: bootstrap">...</th:block>
+</body>
+</html>
