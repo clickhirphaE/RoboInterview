@@ -4,6 +4,8 @@ package com.example.demo;
 
 
 import javax.persistence.*;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,10 +16,9 @@ public class Interview {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private long startTime;
-    private long timeCheck;
-    private long endTime;
-    private long finalTime;
+    private LocalDateTime startTime;
+    private double checkTime;
+    private LocalDateTime endTime;
 
 
     private ArrayList<String> questions;
@@ -74,37 +75,28 @@ public class Interview {
         this.questions = questions;
     }
 
-
-
-    public long getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(long endTime) {
-        this.endTime = endTime;
-    }
-
-    public long getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public long getTimeCheck() {
-        return timeCheck;
-    }
-
-    public void setTimeCheck(long timeCheck) {
-        this.timeCheck = timeCheck;
-    }
-
-    public long getFinalTime() {
-        return finalTime;
-    }
-
-    public void setFinalTime(long finalTime) {
-        this.finalTime = finalTime;
-    }
-
-    public void setStartTime(long startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
+    }
+
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public double getCheckTime() {
+        return checkTime;
+    }
+
+    public void setCheckTime(double checkTime) {
+        this.checkTime = checkTime;
     }
 }

@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 @Controller
 public class DanController {
+    @Autowired
+    InterviewRepository interviewRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -25,17 +29,21 @@ public class DanController {
 
     //    New Resume Form
     @GetMapping("/resumeform")
-    public String addResume(User user, Resume resume, Model model){
+    public String addResume( Model model){
         model.addAttribute("resume", new Resume());
-        model.addAttribute("user", userService.getUser());
         return "resumeform";
     }
 
     //    Processing New Resume Forms
     @PostMapping("/processresume")
-    public String processResume(@Valid Resume resume, User user){
+    public String processResume(@Valid Resume resume){
 
-        user = userService.getUser();
+        User user = userService.getUser();
+
+        if(resume.getUser()==null){
+            resume.setUser(user);
+        }
+
         resume.setInfo(resume.toString(user));
         resumeRepository.save(resume);
         return "redirect:/home";
@@ -45,14 +53,16 @@ public class DanController {
     @GetMapping("/interviewform")
     public String addInterview(Model model){
         model.addAttribute("interview", new Interview());
-
+        model.addAttribute("user_id", userService.getUser().getId());
         return "interviewform";
     }
     @PostMapping("/processinterview")
     public String processInterview(@Valid Interview interview){
 
-        interview.setStartTime(System.nanoTime());
-        return "index";
+        interview.setStartTime(LocalDateTime.now());
+        interview.setEndTime(LocalDateTime.now().plusHours(2));
+        interviewRepository.save(interview);
+        return "redirect:/home";
     }
     //    Main Home Page
     @RequestMapping("/home")
@@ -62,8 +72,11 @@ public class DanController {
 
 
         for (Interview interview:interviewRepository.findAll()) {
-            interview.setEndTime(System.nanoTime());
-            interview.setTimeCheck(interview.getEndTime() - interview.getStartTime());
+
+            Duration duration = Duration.between(interview.getEndTime(),LocalDateTime.now());
+            double n = duration.getSeconds();
+
+            interview.setCheckTime((n/60));
         }
         return "index";
     }

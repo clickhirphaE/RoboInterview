@@ -23,26 +23,44 @@ public class SecurityController {
     UserRepository userRepository;
 
     @GetMapping("/register")
-    public String showRegistrationPage(Model model){
-        model.addAttribute("user",  new User());
+    public String showRegistrationPage(Model model) {
+        model.addAttribute("user", new User());
         return "registration";
     }
 
     @PostMapping("/register")
-    public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
+    public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
         model.addAttribute("user", user);
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "registration";
-        }
-        else{
+        } else {
             userService.saveUser(user);
             model.addAttribute("message", "User Account Created");
         }
-        return "index";
+        return "redirect:/home";
     }
 
     @RequestMapping("/")
+    public String home() {
+
+
+        //Default direct to login if not logged in, to index if are logged in
+        if (userService.getUser() == null) {
+            return "login";
+        } else {
+            return "index";
+        }
+    }
+
+
+    //Login in Mapping
+    @GetMapping("/login")
     public String login(){
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String processLogin(){
+        return "redirect:/home";
     }
 }

@@ -12,6 +12,10 @@
 
 <form th:action="@{/processresume}" th:object="${resume}" method="post">
 
+        <div sec:authorize="hasAuthority('USER')">
+            <input type="hidden" th:field="*{user}" th:value="${user_id}">
+        </div>
+
         <input type="hidden" th:field="*{id}" />
        Education:
             Enter your Education background such as Schools and Degrees.<br/>

@@ -13,7 +13,7 @@
     First Name <mark><strong>
     <span th:if="${#fields.hasErrors('firstName')}"
           th:errors="*{firstName}">First Name Error</span></strong></mark>
-    <input type="text"  id="firstName" placeholder="First Name"
+    <input type="text"  id="firstName" placeholder="First"
            th:field="*{firstName}" /><br/>
 
     Last Name <mark><strong>
@@ -25,13 +25,13 @@
     Email <mark><strong>
     <span th:if="${#fields.hasErrors('email')}"
           th:errors="*{email}">Email Error</span></strong></mark>
-    <input type="text" id="email" placeholder="Email"
+    <input type="text" id="email" placeholder="Fake@email.com"
            th:field="*{email}"/><br/>
 
     Phone Number <mark><strong>
     <span th:if="${#fields.hasErrors('phone')}"
           th:errors="*{phone}">Email Error</span></strong></mark>
-    <input type="text" id="phone" placeholder="Email"
+    <input type="text" id="phone" placeholder="###-###-####"
            th:field="*{phone}"/><br/>
 
     Username <mark><strong>

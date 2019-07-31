@@ -16,9 +16,9 @@
 </p>
 
 <p th:each="interview : ${interviews}">
-        [[{interview.startTime}]]
-        [[{interview.endTime}]]
-        [[{interview.checkTime}]]
+     Start:   [[${interview.startTime}]]<br/>
+    End:    [[${interview.endTime}]]<br/>
+     Minutes Remaining:   [[${interview.checkTime}]] <br/>
 </p>
 
 

@@ -24,13 +24,13 @@ public class HomeController {
     JobPositionRepository jobPositionRepository;
 
 
-//    Main Home Page
-    @RequestMapping("/home")
-    public String index(Model model){
-            model.addAttribute("resumes", resumeRepository.findAll());
-            model.addAttribute("interviews", interviewRepository.findAll());
-        return "index";
-    }
+////    Main Home Page
+//    @RequestMapping("/home")
+//    public String index(Model model){
+//            model.addAttribute("resumes", resumeRepository.findAll());
+//            model.addAttribute("interviews", interviewRepository.findAll());
+//        return "index";
+//    }
 
 
 
