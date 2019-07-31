@@ -74,4 +74,6 @@ public class Interview {
     public void setQuestions(ArrayList<String> questions) {
         this.questions = questions;
     }
+
+
 }

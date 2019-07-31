@@ -13,7 +13,11 @@
 <form th:action="@{/processresume}" th:object="${resume}" method="post">
 
         <input type="hidden" th:field="*{id}" />
-        <input type="hidden" th:field=""
+        <!--<input type="hidden" th:field="*{info}" th:value="${user.firstName + user.lastName + user.phone + user.email}"/>-->
+
+    <input type="submit" value="Submit">
+
+
 
 </form>
 

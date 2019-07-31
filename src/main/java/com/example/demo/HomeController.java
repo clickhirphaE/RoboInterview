@@ -26,17 +26,12 @@ public class HomeController {
 
 //    Main Home Page
     @RequestMapping("/home")
-    public String index(){
-
+    public String index(Model model){
+            model.addAttribute("resumes", resumeRepository.findAll());
         return "index";
     }
 
-//    Processing New Resume Forms
-    @PostMapping("/processresume")
-    public String processResume(){
 
-        return "redirect:/home";
-    }
 
 //    Contact Page
     @GetMapping("/contact")

@@ -7,8 +7,12 @@
 </head>
 <body>
 <th:block th:replace="base :: nav">...</th:block>
-<h2>Insecure Page</h2>
-<a href="/secure">Secure Page</a>
+
+<p th:each="resume : ${resumes}">
+    [[${resume.info}]]
+</p>
+
+
 <th:block th:replace="base :: bootstrap">...</th:block>
 </body>
 </html>

@@ -21,6 +21,9 @@ public class Resume {
     @JoinColumn(name="user_id")
     private User user;
 
+    public Resume() {
+    }
+
     public long getId() {
         return id;
     }
@@ -34,6 +37,7 @@ public class Resume {
     }
 
     public void setInfo(String info) {
+
         this.info = info;
     }
 
@@ -67,5 +71,10 @@ public class Resume {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String toString(User user){
+        String infoString = "Information: \nName:  " + user.getFirstName() + " " + user.getLastName() + "\nEmail:  " + user.getEmail() + "\nPhone Number:  " + user.getPhone();
+        return infoString;
     }
 }
