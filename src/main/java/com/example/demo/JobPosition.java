@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -26,10 +27,17 @@ public class JobPosition {
 
     private String address;
 
+
+    private  LocalDate posteddate;
+
     @OneToMany(mappedBy = "jobPosition")
     private Set<Interview> jobInterviews;
 
-    public JobPosition(String company, String title, Double salary, String jobType, String description,String keywords, String address) {
+    public JobPosition(){
+
+    }
+
+    public JobPosition(String company, String title, Double salary, String jobType, String description,String keywords, String address, LocalDate posteddate) {
         this.title = title;
         this.salary = salary;
         this.jobType = jobType;
@@ -37,6 +45,7 @@ public class JobPosition {
         this.address = address;
         this.company=company;
         this.keywords=keywords;
+        this.posteddate=posteddate;
     }
 
     public long getId() {
@@ -97,7 +106,17 @@ public class JobPosition {
     }
 
     public void setAddress(String address) {
+
         this.address = address;
+    }
+    public LocalDate getPosteddate() {
+        return posteddate;
+    }
+
+    public void setPosteddate(LocalDate posteddate) {
+
+
+        this.posteddate =LocalDate.now();
     }
 
     public Set<Interview> getJobInterviews() {

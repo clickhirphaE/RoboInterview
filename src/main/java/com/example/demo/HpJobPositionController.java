@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-public class JobPositionController {
+public class HpJobPositionController {
     @Autowired
     JobPositionRepository jobPositionRepository;
     @Autowired
      UserService userService;
     //
-    @RequestMapping("/processJobPosition")
+    @RequestMapping("/jobPositionForm")
     public String addJobPosition(Model model){
-        model.addAttribute("job", new JobPosition("Google","sw developer",67000.00,"part-time","coding for 8 hours","software dev","seattle washington"));
+        model.addAttribute("job", new JobPosition());
         return "jobPositionForm";
     }
     @PostMapping("/processJobPosition")
@@ -31,14 +31,14 @@ public class JobPositionController {
         jobPositionRepository.save(jobPosition);
         return "redirect:/";
     }
-
-    @RequestMapping("/detail/{id}")
+     //
+    @RequestMapping("/processJobPosition")
     public String jobPositionDetail(@PathVariable("id") long id, Model model){
-        model.addAttribute("job",jobPositionRepository.findById(id).get());
+        model.addAttribute("jobs",jobPositionRepository.findAll());
         if(userService.getUser()!=null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
-        return "show";
+        return "processJobPosition";
     }
     @RequestMapping("/update/{id}")
     public String updateJobPosition(@PathVariable("id") long id, Model model){

@@ -4,11 +4,17 @@
 <head>
     <th:block th:replace="base :: Meta">...</th:block>
     <title>process Job form</title>
+    <!--script>
+        var d = new Date();
+        document.getElementById("demo").innerHTML = d;
+    </script-->
+
 </head>
 <body>
-<th:block th:replace="base :: nav">...</th:block>
-<h2></h2>
 
+
+
+<th:block th:replace="base :: nav">...</th:block>
 <div class="main-container">
         <tr th:each="job :${jobs}">
             <td th:text="${job.company}"></td>
@@ -18,7 +24,10 @@
             <td th:text="${job.description}"></td>
             <td th:text="${job.keywords}"></td>
             <td th:text="${job.address}"></td>
+            <td th:text="${job.posteddate}"></td>
+
             <div sec:authorize="hasAuthority('ADMIN')">
+
 
                 <a th:href="@{/update/{id}(id=${job.id})}">Update</a>
                 <a th:href="@{/delete/{id}(id=${job.id})}">Delete</a>
@@ -32,6 +41,16 @@
     <span th:text="${job.description}"> </span><br/>
     <span th:text="${job.keywords}"> </span><br/>
     <span th:text="${job.address}"> </span><br/>
+
+
+
+    //working on it...
+    posted <span th:text="${job.posteddate}"> days ago</span><br/>
+
+
+
+        //when user clicks the apply button it renders to the resume form
+        <p><input type="button" class="apply button" th:action="@{/resumeform}">Apply now</p>
 </div>
 </div>
 </tr></div>
