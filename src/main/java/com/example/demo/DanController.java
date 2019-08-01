@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 public class DanController {
@@ -59,8 +60,23 @@ public class DanController {
     @PostMapping("/processinterview")
     public String processInterview(@Valid Interview interview){
 
-        interview.setStartTime(LocalDateTime.now());
-        interview.setEndTime(LocalDateTime.now().plusHours(2));
+
+        //Adding interview questions
+        interview.setQuestions("What is your favorite color?");
+        interview.setQuestions("Where will you be in 5 years");
+        interview.setQuestions("Why do you want to work here?");
+
+        //Start interview timer
+//        interview.setStartTime(LocalDateTime.now());
+//       char[] dateChar= interview.getDateEntry().toCharArray();
+//       dateChar[10] = " ";
+
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        interview.setStartTime(LocalDateTime.parse(interview.getDateEntry(), formatter));
+//        interview.setEndTime(LocalDateTime.now().plusHours(2));
+
+        interview.setStatus("Submitted");
+
         interviewRepository.save(interview);
         return "redirect:/home";
     }
@@ -70,7 +86,7 @@ public class DanController {
         model.addAttribute("resumes", resumeRepository.findAll());
         model.addAttribute("interviews", interviewRepository.findAll());
 
-
+        //Tracks interview Times
         for (Interview interview:interviewRepository.findAll()) {
 
             Duration duration = Duration.between(interview.getEndTime(),LocalDateTime.now());

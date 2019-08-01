@@ -3,6 +3,8 @@ package com.example.demo;
 
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -16,8 +18,12 @@ public class Interview {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private String dateEntry;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime startTime;
     private double checkTime;
+
     private LocalDateTime endTime;
 
 
@@ -32,6 +38,7 @@ public class Interview {
     private JobPosition jobPosition;
 
     public Interview() {
+        questions = new ArrayList<>();
     }
 
 
@@ -71,8 +78,9 @@ public class Interview {
         return questions;
     }
 
-    public void setQuestions(ArrayList<String> questions) {
-        this.questions = questions;
+    public void setQuestions(String question) {
+
+        this.questions.add(question);
     }
 
     public LocalDateTime getStartTime() {
@@ -98,5 +106,13 @@ public class Interview {
 
     public void setCheckTime(double checkTime) {
         this.checkTime = checkTime;
+    }
+
+    public String getDateEntry() {
+        return dateEntry;
+    }
+
+    public void setDateEntry(String dateEntry) {
+        this.dateEntry = dateEntry;
     }
 }

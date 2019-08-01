@@ -10,7 +10,9 @@
 
 <form th:action="@{/processinterview}" th:object="${interview}" method="post">
 
-
+    <input type="datetime-local" th:field="*{dateEntry}">
+        <span th:if="${#fields.hasErrors('endTime')}"
+              th:errors="*{endTime}"></span>
 
     <input type="submit" value="Submit">
 </form>
