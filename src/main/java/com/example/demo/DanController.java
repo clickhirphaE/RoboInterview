@@ -96,4 +96,12 @@ public class DanController {
         }
         return "index";
     }
+
+    @GetMapping("/interviewpopup")
+    public String popup(Model model, Interview interview){
+        model.addAttribute("interview", interview);
+        model.addAttribute("questions", interview.getQuestions());
+
+        return "interviewpopup";
+    }
 }

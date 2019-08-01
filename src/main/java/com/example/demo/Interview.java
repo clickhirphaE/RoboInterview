@@ -28,6 +28,7 @@ public class Interview {
 
 
     private ArrayList<String> questions;
+    private ArrayList<String> answers;
 
     private String status;
 
@@ -82,6 +83,9 @@ public class Interview {
 
         this.questions.add(question);
     }
+    public void setAnswers(String  answer) {
+        this.answers.add(answer);
+    }
 
     public LocalDateTime getStartTime() {
         return startTime;
@@ -115,4 +119,10 @@ public class Interview {
     public void setDateEntry(String dateEntry) {
         this.dateEntry = dateEntry;
     }
+
+    public ArrayList<String> getAnswers() {
+        return answers;
+    }
+
+
 }
