@@ -20,7 +20,7 @@ public class HomeController {
     @Autowired
     ResumeRepository resumeRepository;
 
-    @Autowired
+  @Autowired
     JobPositionRepository jobPositionRepository;
 
 

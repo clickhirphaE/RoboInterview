@@ -43,7 +43,8 @@ public class DataLoader implements CommandLineRunner{
 
 //        Starting JobPositions
 
-        JobPosition position = new JobPosition("McDonald", "Dishwasher", 20000.00,"Part-time", "cleaning ,stocking", "nurse", "Gaithersburg, md",08/1/2019);
+        JobPosition position = new JobPosition("McDonald", "Dishwasher", 20000.00,"Part-time", "cleaning ,stocking", "cleaning", "Gaithersburg, md","08/02/2019");
+
         jobPositionRepository.save(position);
     }
 }

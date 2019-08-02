@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -32,7 +31,7 @@ public class JobPosition {
 
     @OneToMany(mappedBy = "jobPosition")
     private Set<Interview> jobInterviews;
-
+  //  private Set<JobList> joblist;
     public JobPosition(){
 
     }
@@ -125,6 +124,9 @@ public class JobPosition {
 
     public void setJobInterviews(Set<Interview> jobInterviews)
     {
+
         this.jobInterviews = jobInterviews;
+
+
     }
 }
