@@ -19,6 +19,7 @@ public class HpJobPositionController {
     @Autowired
      UserService userService;
 
+
     @GetMapping("/jobPositionForm")
     public String addJobPosition(Model model){
         model.addAttribute("job", new JobPosition());
@@ -31,7 +32,7 @@ public class HpJobPositionController {
             return "jobPositionForm";
         }
         jobPositionRepository.save(jobPosition);
-        return "redirect:/";
+        return "redirect:/home";
     }
      //
     @RequestMapping("/processJobPosition")
@@ -50,7 +51,7 @@ public class HpJobPositionController {
     @RequestMapping("/delete/{id}")
     public String delJobPosition(@PathVariable("id") long id){
         jobPositionRepository.deleteById(id);
-        return "redirect:/";
+        return "redirect:/home";
     }
 
 

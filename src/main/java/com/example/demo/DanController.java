@@ -103,7 +103,7 @@ public class DanController {
     public String index(Model model){
         model.addAttribute("resumes", resumeRepository.findAll());
         model.addAttribute("interviews", interviewRepository.findAll());
-        model.addAttribute("jobpositions",jobPositionRepository.findAll() );
+        model.addAttribute("jobpositions",jobPositionRepository.findAll());
 
         //Tracks interview Times
 //        for (Interview interview:interviewRepository.findAll()) {
