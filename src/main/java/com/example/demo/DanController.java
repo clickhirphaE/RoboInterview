@@ -28,6 +28,9 @@ public class DanController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    QuestionRepository questionRepository;
+
     //    New Resume Form
     @GetMapping("/resumeform")
     public String addResume( Model model){
@@ -62,9 +65,21 @@ public class DanController {
 
 
         //Adding interview questions
-        interview.setQuestions("What is your favorite color?");
-        interview.setQuestions("Where will you be in 5 years");
-        interview.setQuestions("Why do you want to work here?");
+
+        Question question = new Question();
+        question.setPrompt("What is your favorite color?");
+        question.setInterview(interview);
+        questionRepository.save(question);
+
+        question = new Question();
+        question.setPrompt("Where will you be in 5 years");
+        question.setInterview(interview);
+        questionRepository.save(question);
+
+        question = new Question();
+        question.setPrompt("Why do you want to work here?");
+        question.setInterview(interview);
+        questionRepository.save(question);
 
         //Start interview timer
 //        interview.setStartTime(LocalDateTime.now());
@@ -87,20 +102,20 @@ public class DanController {
         model.addAttribute("interviews", interviewRepository.findAll());
 
         //Tracks interview Times
-        for (Interview interview:interviewRepository.findAll()) {
-
-            Duration duration = Duration.between(interview.getEndTime(),LocalDateTime.now());
-            double n = duration.getSeconds();
-
-            interview.setCheckTime((n/60));
-        }
+//        for (Interview interview:interviewRepository.findAll()) {
+//
+//            Duration duration = Duration.between(interview.getEndTime(),LocalDateTime.now());
+//            double n = duration.getSeconds();
+//
+//            interview.setCheckTime((n/60));
+//        }
         return "index";
     }
 
     @GetMapping("/interviewpopup")
     public String popup(Model model, Interview interview){
         model.addAttribute("interview", interview);
-        model.addAttribute("questions", interview.getQuestions());
+        model.addAttribute("questions", questionRepository.findByInterview(interview));
 
         return "interviewpopup";
     }

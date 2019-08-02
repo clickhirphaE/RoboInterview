@@ -10,6 +10,9 @@
 
 <form th:action="@{/processinterview}" th:object="${interview}" method="post">
 
+    <input type="hidden" th:field="*{id}">
+
+    When would you like to schedule your interview? <br/> <br/>
     <input type="datetime-local" th:field="*{dateEntry}">
         <span th:if="${#fields.hasErrors('endTime')}"
               th:errors="*{endTime}"></span>

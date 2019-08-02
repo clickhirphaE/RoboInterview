@@ -10,10 +10,6 @@
 
 
 
-       <input myFunction() th:field="${interview.answers}">
-
-
-
 
 
 <!-- Button trigger modal -->
@@ -32,9 +28,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form  th:action="@{/processpopup}" th:object="${interview}" method="post">
+                <form  th:action="@{/processpopup}" th:object="${questions}" method="post">
                 <div th:each="question : ${questions}">
-                    [[${question}]] <br/> <input type="text" th:field="*{answers}">
+                    [[${question}]] <br/> <input type="text" th:field="*{answer}">
                 </div>
                 </form>
             </div>
@@ -46,15 +42,6 @@
     </div>
 </div>
 
-<script>
-    function myFunction(){
-
-
-        var txt;
-        var person = prompt("question 1?")
-    }
-
-</script>
 
 </body>
 </html>

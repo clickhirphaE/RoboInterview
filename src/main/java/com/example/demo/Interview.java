@@ -14,23 +14,25 @@ import java.util.Set;
 
 @Entity
 public class Interview {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+
 
     private String dateEntry;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime startTime;
     private double checkTime;
-
     private LocalDateTime endTime;
 
 
-    private ArrayList<String> questions;
-    private ArrayList<String> answers;
-
     private String status;
+
+    @OneToMany(mappedBy = "interview")
+    private Set<Question> questions;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private User user;
@@ -39,7 +41,6 @@ public class Interview {
     private JobPosition jobPosition;
 
     public Interview() {
-        questions = new ArrayList<>();
     }
 
 
@@ -75,16 +76,13 @@ public class Interview {
         this.jobPosition = jobPosition;
     }
 
-    public ArrayList<String> getQuestions() {
+    public Set<Question> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(String question) {
+    public void setQuestions(Question prompt) {
 
-        this.questions.add(question);
-    }
-    public void setAnswers(String  answer) {
-        this.answers.add(answer);
+        this.questions.add(prompt);
     }
 
     public LocalDateTime getStartTime() {
@@ -118,10 +116,6 @@ public class Interview {
 
     public void setDateEntry(String dateEntry) {
         this.dateEntry = dateEntry;
-    }
-
-    public ArrayList<String> getAnswers() {
-        return answers;
     }
 
 
