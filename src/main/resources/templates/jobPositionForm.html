@@ -12,7 +12,7 @@
 
 <th:block th:replace="base :: nav">...</th:block>
 <h4>Fill out the Job Opening Form below</h4>
-<form autocomplete="off"  th:action="@{/processJobPosition}" th:object="${job}" method="post">
+<form th:action="@{/processJobPosition}" th:object="${job}" method="post">
 
     <input type="hidden" th:field="*{id}"/>
    Job Title<mark><strong>
@@ -33,10 +33,10 @@
     <input type="text" id="salary" placeholder="salary"
            th:field="*{salary}"/><br/>
 
-   //option for job type ....
+    <!--option for job type ....-->
 
     Job Type: <mark><strong>
-    <span th:if="${#fields.hasErrors('jobtype')}"
+    <span th:if="${#fields.hasErrors('jobType')}"
           th:errors="*{jobType}">job type has Error</span></strong></mark>
     <input type="text" id="jobType" placeholder="job type"
            th:field="*{jobType}"/><br/>
