@@ -14,7 +14,6 @@
 <h4>Fill out the Job Opening Form below</h4>
 <form autocomplete="off"  th:action="@{/processJobPosition}" th:object="${job}" method="post">
 
-
     <input type="hidden" th:field="*{id}"/>
    Job Title<mark><strong>
     <span th:if="${#fields.hasErrors('title')}"
@@ -64,7 +63,6 @@
       <span th:if="${#fields.hasErrors('keywords')}"
             th:errors="*{keywords}">keywords has Error</span></strong></mark>
         <input type="text" id="keywords" placeholder="keywords" th:field="*{keywords}"/><br/>
-
 
     posted date:<mark><strong>
     <span th:if="${#fields.hasErrors('posteddate')}"

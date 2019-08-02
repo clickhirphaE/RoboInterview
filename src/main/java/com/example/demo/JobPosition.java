@@ -28,7 +28,7 @@ public class JobPosition {
     private String address;
 
 
-    private  LocalDate posteddate;
+    private  String posteddate;
 
     @OneToMany(mappedBy = "jobPosition")
     private Set<Interview> jobInterviews;
@@ -37,7 +37,7 @@ public class JobPosition {
 
     }
 
-    public JobPosition(String company, String title, Double salary, String jobType, String description,String keywords, String address, LocalDate posteddate) {
+    public JobPosition(String company, String title, Double salary, String jobType, String description,String keywords, String address, String posteddate) {
         this.title = title;
         this.salary = salary;
         this.jobType = jobType;
@@ -109,14 +109,14 @@ public class JobPosition {
 
         this.address = address;
     }
-    public LocalDate getPosteddate() {
+    public String getPosteddate() {
         return posteddate;
     }
 
-    public void setPosteddate(LocalDate posteddate) {
+    public void setPosteddate(String posteddate) {
 
 
-        this.posteddate =LocalDate.now();
+        this.posteddate =posteddate;
     }
 
     public Set<Interview> getJobInterviews() {
