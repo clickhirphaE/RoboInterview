@@ -43,8 +43,15 @@ public class DataLoader implements CommandLineRunner {
 
 //        Starting JobPositions
 
-        JobPosition position = new JobPosition("McDonald", "Dishwasher", 20000.00,"Part-time", "cleaning ,stocking", "nurse", "Gaithersburg, md","08/1/2019");
+        JobPosition position = new JobPosition("McDonald", "Dishwasher", 20000.00,"Part-Time", "cleaning ,stocking", "nurse", "Gaithersburg, md","08/1/2019");
         jobPositionRepository.save(position);
+
+        position = new JobPosition("Aldi", "Cashier", 14.30 , "Part-Time",
+                " As a store employee, you're also responsible for merchandising product, monitoring inventory and keeping the store looking its best. " +
+                        "It's an opportunity to get more out of your career and grow in an exciting environment.","cashier, register, products, customer service",
+                "Gaithersburg, MD", "08/02/2019");
+        jobPositionRepository.save(position);
+
     }
 }
 

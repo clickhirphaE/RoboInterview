@@ -31,216 +31,254 @@
 
 <!--admin page-->
 <!--change authority to show only to admin admin-->
-<!--<div class="w3-twothird" sec:authorize="hasAuthority('ADMIN')"-->
-<!--th:each="jobs : ${jobpositions}">-->
-<!--<div class="w3-container w3-card w3-white w3-margin-bottom">-->
-<!--<a href="/jobPositionForm">New Position</a>-->
-<!--<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal">Job Positions</i>-->
-<!--</h2>-->
+<div class="w3-twothird" sec:authorize="hasAuthority('ADMIN')"
+th:each="jobs : ${jobpositions}">
+<div class="w3-container w3-card w3-white w3-margin-bottom">
+<a href="/jobPositionForm">New Position</a>
+<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal">Job Positions</i>
+</h2>
 
-<!--<div class="w3-container">-->
-<!--<h5 class="w3-opacity"><b><span th:text="${jobs.title}"></span></b></h5>-->
-<!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i> <span class="w3-tag w3-teal w3-round" th:text="${jobs.posteddate}"></span></h6>-->
-<!--<p th:text="${jobs.description}"></p>-->
-<!--<hr>-->
-<!--</div>-->
-<!--<div class="w3-container">-->
-<!--<h5 class="w3-opacity"><b>Web Developer / something.com</b></h5>-->
-<!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Mar 2012 - Dec 2014</h6>-->
-<!--<p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>-->
-<!--<hr>-->
-<!--</div>-->
-<!--<div class="w3-container">-->
-<!--<h5 class="w3-opacity"><b>Graphic Designer / designsomething.com</b></h5>-->
-<!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6>-->
-<!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p><br>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
+<div class="w3-container">
+<h5 class="w3-opacity"><b><span th:text="${jobs.title}"></span></b></h5>
+<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i> <span class="w3-tag w3-teal w3-round" th:text="${jobs.posteddate}"></span></h6>
+<p th:text="${jobs.description}"></p>
+<hr>
+</div>
+<div class="w3-container">
+<h5 class="w3-opacity"><b>Web Developer / something.com</b></h5>
+<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Mar 2012 - Dec 2014</h6>
+<p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
+<hr>
+</div>
+<div class="w3-container">
+<h5 class="w3-opacity"><b>Graphic Designer / designsomething.com</b></h5>
+<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p><br>
+</div>
+</div>
+</div>
 
 
 
 
 
 <hr>
-<!--&lt;!&ndash;//only Admin is authorized to post the new Job openings&ndash;&gt;-->
-<!--&lt;!&ndash; Page Container &ndash;&gt;-->
-<!--<div class="w3-content w3-margin-top" style="max-width:1400px;">-->
+<!--//only Admin is authorized to post the new Job openings-->
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
 
-<!--&lt;!&ndash; The Grid &ndash;&gt;-->
-<!--<div class="w3-row-padding">-->
+<!-- The Grid -->
+<div class="w3-row-padding">
 
-<!--&lt;!&ndash; Left Column &ndash;&gt;-->
-<!--<div class="w3-third">-->
+<!-- Left Column -->
+<div class="w3-third">
 
-<!--<div class="w3-white w3-text-grey w3-card-4">-->
-<!--<div class="w3-display-container">-->
-<!--<img src="/w3images/avatar_hat.jpg" style="width:100%" alt="Avatar">-->
-<!--<div class="w3-display-bottomleft w3-container w3-text-black">-->
-<!--<h2 th:text=""></h2>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="w3-container">-->
-<!--<p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Designer</p>-->
-<!--<p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>London, UK</p>-->
-<!--<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>ex@mail.com</p>-->
-<!--<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>1224435534</p>-->
-<!--<hr>-->
+<div class="w3-white w3-text-grey w3-card-4">
+<div class="w3-display-container">
+<img src="/w3images/avatar_hat.jpg" style="width:100%" alt="Avatar">
+<div class="w3-display-bottomleft w3-container w3-text-black">
+<h2 th:text=""></h2>
+</div>
+</div>
+<div class="w3-container">
+<p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Designer</p>
+<p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>London, UK</p>
+<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>ex@mail.com</p>
+<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>1224435534</p>
+<hr>
 
-<!--<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>-->
-<!--<p>Adobe Photoshop</p>-->
-<!--<div class="w3-light-grey w3-round-xlarge w3-small">-->
-<!--<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">90%</div>-->
-<!--</div>-->
-<!--<p>Photography</p>-->
-<!--<div class="w3-light-grey w3-round-xlarge w3-small">-->
-<!--<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">-->
-<!--<div class="w3-center w3-text-white">80%</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<p>Illustrator</p>-->
-<!--<div class="w3-light-grey w3-round-xlarge w3-small">-->
-<!--<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:75%">75%</div>-->
-<!--</div>-->
-<!--<p>Media</p>-->
-<!--<div class="w3-light-grey w3-round-xlarge w3-small">-->
-<!--<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:50%">50%</div>-->
-<!--</div>-->
-<!--<br>-->
+<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
+<p>Adobe Photoshop</p>
+<div class="w3-light-grey w3-round-xlarge w3-small">
+<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">90%</div>
+</div>
+<p>Photography</p>
+<div class="w3-light-grey w3-round-xlarge w3-small">
+<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">
+<div class="w3-center w3-text-white">80%</div>
+</div>
+</div>
+<p>Illustrator</p>
+<div class="w3-light-grey w3-round-xlarge w3-small">
+<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:75%">75%</div>
+</div>
+<p>Media</p>
+<div class="w3-light-grey w3-round-xlarge w3-small">
+<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:50%">50%</div>
+</div>
+<br>
 
-<!--<p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>-->
-<!--<p>English</p>-->
-<!--<div class="w3-light-grey w3-round-xlarge">-->
-<!--<div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>-->
-<!--</div>-->
-<!--<p>Spanish</p>-->
-<!--<div class="w3-light-grey w3-round-xlarge">-->
-<!--<div class="w3-round-xlarge w3-teal" style="height:24px;width:55%"></div>-->
-<!--</div>-->
-<!--<p>German</p>-->
-<!--<div class="w3-light-grey w3-round-xlarge">-->
-<!--<div class="w3-round-xlarge w3-teal" style="height:24px;width:25%"></div>-->
-<!--</div>-->
-<!--<br>-->
-<!--</div>-->
-<!--</div><br>-->
+<p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
+<p>English</p>
+<div class="w3-light-grey w3-round-xlarge">
+<div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>
+</div>
+<p>Spanish</p>
+<div class="w3-light-grey w3-round-xlarge">
+<div class="w3-round-xlarge w3-teal" style="height:24px;width:55%"></div>
+</div>
+<p>German</p>
+<div class="w3-light-grey w3-round-xlarge">
+<div class="w3-round-xlarge w3-teal" style="height:24px;width:25%"></div>
+</div>
+<br>
+</div>
+</div><br>
 
-<!--&lt;!&ndash; End Left Column &ndash;&gt;-->
-<!--</div>-->
+<!-- End Left Column -->
+</div>
 
-<!--&lt;!&ndash; Right Column &ndash;&gt;-->
-<!--<div class="w3-twothird" th:each="jobs : ${jobpositions}">-->
+<!-- Right Column -->
+<div class="w3-twothird" th:each="jobs : ${jobpositions}">
 
-<!--<div class="w3-container w3-card w3-white w3-margin-bottom">-->
-<!--<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>-->
-<!--<div class="w3-container">-->
-<!--<h5 class="w3-opacity"><b><span  th:text="${jobs.title}"></span></b></h5>-->
-<!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right" th:text="${jobs.posteddate}"></i><span class="w3-tag w3-teal w3-round" th:text="${jobs.jobType}"></span></h6>-->
-<!--<p th:text="${jobs.description}"></p>-->
-<!--<hr>-->
-<!--</div>-->
-<!--<div class="w3-container">-->
-<!--<h5 class="w3-opacity"><b>Web Developer / something.com</b></h5>-->
-<!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Mar 2012 - Dec 2014</h6>-->
-<!--<p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>-->
-<!--<hr>-->
-<!--</div>-->
-<!--<div class="w3-container">-->
-<!--<h5 class="w3-opacity"><b>Graphic Designer / designsomething.com</b></h5>-->
-<!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6>-->
-<!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p><br>-->
-<!--</div>-->
-<!--</div>-->
+<div class="w3-container w3-card w3-white w3-margin-bottom">
+<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>
+<div class="w3-container">
+<h5 class="w3-opacity"><b><span  th:text="${jobs.title}"></span></b></h5>
+<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right" th:text="${jobs.posteddate}"></i><span class="w3-tag w3-teal w3-round" th:text="${jobs.jobType}"></span></h6>
+<p th:text="${jobs.description}"></p>
+<hr>
+</div>
+<div class="w3-container">
+<h5 class="w3-opacity"><b>Web Developer / something.com</b></h5>
+<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Mar 2012 - Dec 2014</h6>
+<p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
+<hr>
+</div>
+<div class="w3-container">
+<h5 class="w3-opacity"><b>Graphic Designer / designsomething.com</b></h5>
+<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p><br>
+</div>
+</div>
 
-<!--<div class="w3-container w3-card w3-white">-->
-<!--<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>-->
-<!--<div class="w3-container">-->
-<!--<h5 class="w3-opacity"><b>W3Schools.com</b></h5>-->
-<!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>-->
-<!--<p>Web Development! All I need to know in one place</p>-->
-<!--<hr>-->
-<!--</div>-->
-<!--<div class="w3-container">-->
-<!--<h5 class="w3-opacity"><b>London Business School</b></h5>-->
-<!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>-->
-<!--<p>Master Degree</p>-->
-<!--<hr>-->
-<!--</div>-->
-<!--<div class="w3-container">-->
-<!--<h5 class="w3-opacity"><b>School of Coding</b></h5>-->
-<!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2010 - 2013</h6>-->
-<!--<p>Bachelor Degree</p><br>-->
-<!--</div>-->
-<!--</div>-->
+<div class="w3-container w3-card w3-white">
+<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
+<div class="w3-container">
+<h5 class="w3-opacity"><b>W3Schools.com</b></h5>
+<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>
+<p>Web Development! All I need to know in one place</p>
+<hr>
+</div>
+<div class="w3-container">
+<h5 class="w3-opacity"><b>London Business School</b></h5>
+<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>
+<p>Master Degree</p>
+<hr>
+</div>
+<div class="w3-container">
+<h5 class="w3-opacity"><b>School of Coding</b></h5>
+<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2010 - 2013</h6>
+<p>Bachelor Degree</p><br>
+</div>
+</div>
 
-<!--&lt;!&ndash; End Right Column &ndash;&gt;-->
-<!--</div>-->
+<!-- End Right Column -->
+</div>
 
-<!--&lt;!&ndash; End Grid &ndash;&gt;-->
-<!--</div>-->
+<!-- End Grid -->
+</div>
 
-<!--&lt;!&ndash; End Page Container &ndash;&gt;-->
-<!--</div>-->
+<!-- End Page Container -->
+</div>
 
-<!--<footer class="w3-container w3-teal w3-center w3-margin-top">-->
-<!--<p>Find me on social media.</p>-->
-<!--<i class="fa fa-facebook-official w3-hover-opacity"></i>-->
-<!--<i class="fa fa-instagram w3-hover-opacity"></i>-->
-<!--<i class="fa fa-snapchat w3-hover-opacity"></i>-->
-<!--<i class="fa fa-pinterest-p w3-hover-opacity"></i>-->
-<!--<i class="fa fa-twitter w3-hover-opacity"></i>-->
-<!--<i class="fa fa-linkedin w3-hover-opacity"></i>-->
-<!--<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>-->
-<!--</footer>-->
-
-
-
-<!--another card style-->
-
-<!-- !PAGE CONTENT! -->
-<!--<div class="w3-main" style="margin-left:300px">-->
-
-    <!--&lt;!&ndash; Header &ndash;&gt;-->
-    <!--<th:block th:replace="index :: importHeader"></th:block>-->
-    <!--&lt;!&ndash;End Header&ndash;&gt;-->
-    <!--&lt;!&ndash;Content&ndash;&gt;-->
-    <!--<div class="card" style="width: 85rem;" th:each="var:${messages}">-->
-        <!--<div class="card-body">-->
-            <!--<h5 class="card-title" th:text="${var.title}"></h5>-->
-            <!--<h6 class="card-subtitle mb-2 text-muted" th:text="${var.sentby}"></h6>-->
-            <!--&lt;!&ndash;<div class="jumbotron">&ndash;&gt;-->
-            <!--<th:block th:if="${var.headshot != null}">-->
-                <!--<img class="card-img-top" th:src="${var.headshot}"-->
-                     <!--style="width: 1000px; height: 500px; background-color: rgba(0,0,255,0.1); position: center">-->
-            <!--</th:block>-->
-
-            <!--<p class="card-text" th:text="${var.content}"></p>-->
-
-            <!--<p>-->
-                <!--<small th:text="${var.date}"></small>-->
-            <!--</p>-->
-
-            <!--<a class="btn btn-outline-primary"-->
-               <!--th:href="@{/update/{id} (id=${var.id})}">Update Message</a>-->
-
-            <!--<a class="btn btn-outline-primary"-->
-               <!--th:href="@{/update/pic/{id} (id=${var.id})}">Update Message Picture</a>-->
-            <!--<a class="btn btn-outline-primary" th:href="@{/detail/{id} (id=${var.id})}">Details</a>-->
-
-            <!--<a class="btn btn-outline-primary"-->
-               <!--th:href="@{/delete/{id} (id=${var.id})}">Delete</a>-->
-
-        <!--</div>-->
-    <!--</div>-->
-    <!--<hr>-->
-
-<!--</div>-->
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+<p>Find me on social media.</p>
+<i class="fa fa-facebook-official w3-hover-opacity"></i>
+<i class="fa fa-instagram w3-hover-opacity"></i>
+<i class="fa fa-snapchat w3-hover-opacity"></i>
+<i class="fa fa-pinterest-p w3-hover-opacity"></i>
+<i class="fa fa-twitter w3-hover-opacity"></i>
+<i class="fa fa-linkedin w3-hover-opacity"></i>
+<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
 
 
-<!--<hr>-->
-<!--<br>-->
+
+another card style
+
+ !PAGE CONTENT!
+<div class="w3-main" style="margin-left:300px">
+
+    <!-- Header -->
+    <!--End Header-->
+    <!--Content-->
+    <div class="card" style="width: 85rem;" th:each="var:${messages}">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${var.title}"></h5>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${var.sentby}"></h6>
+            <!--<div class="jumbotron">-->
+            <th:block th:if="${var.headshot != null}">
+                <img class="card-img-top" th:src="${var.headshot}"
+                     style="width: 1000px; height: 500px; background-color: rgba(0,0,255,0.1); position: center">
+            </th:block>
+
+            <p class="card-text" th:text="${var.content}"></p>
+
+            <p>
+                <small th:text="${var.date}"></small>
+            </p>
+
+            <a class="btn btn-outline-primary"
+               th:href="@{/update/{id} (id=${var.id})}">Update Message</a>
+
+            <a class="btn btn-outline-primary"
+               th:href="@{/update/pic/{id} (id=${var.id})}">Update Message Picture</a>
+            <a class="btn btn-outline-primary" th:href="@{/detail/{id} (id=${var.id})}">Details</a>
+
+            <a class="btn btn-outline-primary"
+               th:href="@{/delete/{id} (id=${var.id})}">Delete</a>
+
+        </div>
+    </div>
+    <hr>
+
+</div>
+
+
+<hr>
+<br>
+
+
+
+<div class="row">
+
+    <div class="col-sm-8" >
+        <div class="card" th:each="jobs: ${jobpositions}">
+            <div class="card-body" >
+                <h5 class="card-title">[[${jobs.title}]]</h5>
+                <h6 class="card-sub-title">
+                    <span>
+                        <p>[[${jobs.posteddate}]]</p>
+                     <p>[[${jobs.jobType}]]</p>
+
+                </span>
+
+                </h6>
+                <p class="card-text">[[${jobs.description}]]</p>
+<!--       admin authority to update/delete         -->
+                <span>
+                        <a th:href="@{/update/{id}(id=${jobs.id})}" class="btn btn-update">Update</a>
+                        <a th:href="@{/delete/{id}(id=${jobs.id})}" class="btn btn-delete">Delete</a>
+                    </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <th:block th:replace="base :: bootstrap">...</th:block>
 
 </body>
 </html>
+
+
