@@ -27,64 +27,64 @@
 
 <!--//only Admin is authorized to post the new Job openings-->
 <!-- Page Container -->
-<div class="w3-content w3-margin-top" style="max-width:1400px;">
+<!--<div class="w3-content w3-margin-top" style="max-width:1400px;">-->
 
-    <!-- The Grid -->
-    <div class="w3-row-padding">
+<!--    &lt;!&ndash; The Grid &ndash;&gt;-->
+<!--    <div class="w3-row-padding">-->
 
-        <!-- Left Column -->
-        <div class="w3-third">
+<!--        &lt;!&ndash; Left Column &ndash;&gt;-->
+<!--        <div class="w3-third">-->
 
-            <div class="w3-white w3-text-grey w3-card-4">
-                <div class="w3-display-container">
-                    <img src="/w3images/avatar_hat.jpg" style="width:100%" alt="Avatar">
-                    <div class="w3-display-bottomleft w3-container w3-text-black">
-<!--                        <h2 th:text=""></h2>-->
-                    </div>
-                </div>
-                <div class="w3-container">
-                    <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Designer</p>
-                    <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>London, UK</p>
-                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>ex@mail.com</p>
-                    <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>1224435534</p>
-                    <hr>
-                </div>
-            </div>
-            <br>
+<!--            <div class="w3-white w3-text-grey w3-card-4">-->
+<!--                <div class="w3-display-container">-->
+<!--                    <img src="/w3images/avatar_hat.jpg" style="width:100%" alt="Avatar">-->
+<!--                    <div class="w3-display-bottomleft w3-container w3-text-black">-->
+<!--&lt;!&ndash;                        <h2 th:text=""></h2>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="w3-container">-->
+<!--                    <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Designer</p>-->
+<!--                    <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>London, UK</p>-->
+<!--                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>ex@mail.com</p>-->
+<!--                    <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>1224435534</p>-->
+<!--                    <hr>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <br>-->
 
-            <!-- End Left Column -->
-        </div>
+<!--            &lt;!&ndash; End Left Column &ndash;&gt;-->
+<!--        </div>-->
 
-        <!-- Right Column -->
-        <div class="w3-twothird" th:each="jobs : ${jobpositions}">
+<!--        &lt;!&ndash; Right Column &ndash;&gt;-->
+<!--        <div class="w3-twothird" th:each="jobs : ${jobpositions}">-->
 
-            <div class="w3-container w3-card w3-white w3-margin-bottom">
-                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Job Position</h2>
-                <div class="w3-container">
-                    <h5 class="w3-opacity"><b><span  th:text="${jobs.title}"></span></b></h5>
-                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right" th:text="${jobs.posteddate}"> [[${jobs.posteddate}]] </i></h6>
-                    <span class="w3-tag w3-teal w3-round"  th:text="${jobs.jobType}"></span>
-                    <p>
-                            <small>[[${jobs.description}]]</small>
+<!--            <div class="w3-container w3-card w3-white w3-margin-bottom">-->
+<!--                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Job Position</h2>-->
+<!--                <div class="w3-container">-->
+<!--                    <h5 class="w3-opacity"><b><span  th:text="${jobs.title}"></span></b></h5>-->
+<!--                    <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right" th:text="${jobs.posteddate}"> [[${jobs.posteddate}]] </i></h6>-->
+<!--                    <span class="w3-tag w3-teal w3-round"  th:text="${jobs.jobType}"></span>-->
+<!--                    <p>-->
+<!--                            <small>[[${jobs.description}]]</small>-->
 
-                    </p>
-                    <!--admin authirity to update/delete-->
-                    <span>
-                        <a th:href="@{/update/{id}(id=${jobs.id})}">Update</a>
-                        <a th:href="@{/delete/{id}(id=${jobs.id})}">Delete</a>
-                    </span>
-                    <hr>
-                </div>
+<!--                    </p>-->
+<!--                    &lt;!&ndash;admin authirity to update/delete&ndash;&gt;-->
+<!--                    <span>-->
+<!--                        <a th:href="@{/update/{id}(id=${jobs.id})}">Update</a>-->
+<!--                        <a th:href="@{/delete/{id}(id=${jobs.id})}">Delete</a>-->
+<!--                    </span>-->
+<!--                    <hr>-->
+<!--                </div>-->
 
-            </div>
-            <!-- End Right Column -->
-        </div>
+<!--            </div>-->
+<!--            &lt;!&ndash; End Right Column &ndash;&gt;-->
+<!--        </div>-->
 
-        <!-- End Grid -->
-    </div>
+<!--        &lt;!&ndash; End Grid &ndash;&gt;-->
+<!--    </div>-->
 
-    <!-- End Page Container -->
-</div>
+<!--    &lt;!&ndash; End Page Container &ndash;&gt;-->
+<!--</div>-->
 
 <!--new card style kepps new position update in csrd-->
 <div class="row">
