@@ -14,18 +14,18 @@
 <p id="demo"></p>
 <p id="demo2"></p>
 <input hidden th:object="${question}">
-
+<input type="hidden" id="answer" value="" name="answer">
 
 <script>
     function myFunction() {
         var txt;
-        var person = prompt("Please enter your name:", "Harry Potter");
+        var person = prompt(document.getElementById("question").value);
         if (person == null || person == "") {
-            txt = "User cancelled the prompt.";
+            txt = "Applicant chose not to answer this question";
         } else {
-            txt = "Hello " + person + "! How are you today?";
+            txt = person;
         }
-        document.getElementById("demo").innerHTML = txt;
+        document.getElementById("answer").innerHTML = txt;
     }
 
 
