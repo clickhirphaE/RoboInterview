@@ -7,12 +7,10 @@
 
 </head>
 <body>
-
-<div sec:authorize="hasAuthority('ADMIN')">  //only Admin is authorized to post the new Job openings
-
 <th:block th:replace="base :: nav">...</th:block>
-<h4>Fill out the Job Opening Form below</h4>
-<form autocomplete="off"  th:action="@{/processJobPosition}" th:object="${job}" method="post">
+<div sec:authorize="hasAuthority('ADMIN')">  <!--only Admin is authorized to post the new Job openings-->
+<div><h4>Fill out the Job Opening Form below</h4>
+<form th:action="@{/processJobPosition}" th:object="${job}" method="post">
 
     <input type="hidden" th:field="*{id}"/>
    Job Title<mark><strong>
@@ -33,10 +31,10 @@
     <input type="text" id="salary" placeholder="salary"
            th:field="*{salary}"/><br/>
 
-   //option for job type ....
+   <!--//option for job type ....-->
 
     Job Type: <mark><strong>
-    <span th:if="${#fields.hasErrors('jobtype')}"
+    <span th:if="${#fields.hasErrors('jobType')}"
           th:errors="*{jobType}">job type has Error</span></strong></mark>
     <input type="text" id="jobType" placeholder="job type"
            th:field="*{jobType}"/><br/>
@@ -71,8 +69,9 @@
            th:field="*{posteddate}"/><br/>
 </strong>
 </mark>
-    <button type="submit"  value="submit" class="btn btn-default">Post Job</button>
+    <button type="submit"  value="submit" class="btn btn-default" >Post Job</button>
 </form>
+    </div>
 </div>
 <th:block th:replace="base :: bootstrap">...</th:block>
 </body>

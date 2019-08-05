@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
           <tr th:each="job :${jobs}">
-              //users not allowed to update or delete
+              <!--users not allowed to update or delete-->
 
               <th:block sec:authorize="isAuthenticated()">
               <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
@@ -45,10 +45,10 @@
               <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
               <div class="w-100"></div>
             <td th:text="${job.posteddate}"></td>
-                  //when user clicks the apply button it renders to the resume form
+                  <!--when user clicks the apply button it renders to the resume form-->
                   <p><input type="button" class="apply button" th:action="@{/resumeform}">Apply now</p>
           </th:block>
-              //
+              <!--only Admin authorized here-->
               <th:block sec:authorize="hasAuthority('ADMIN')">
                 <a th:href="@{/update/{id}(id=${job.id})}">Update</a>
                 <a th:href="@{/delete/{id}(id=${job.id})}">Delete</a>
