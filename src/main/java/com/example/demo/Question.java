@@ -17,6 +17,9 @@ public class Question {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Interview interview;
 
+    public Question() {
+    }
+
     public long getId() {
         return id;
     }

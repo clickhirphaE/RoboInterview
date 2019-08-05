@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.Duration;
@@ -156,23 +153,31 @@ public class DanController {
 
     @GetMapping("/interviewpopup/{id}")
     public String popup(@PathVariable("id") long id, Model model){
-////        Interview interview = interviewRepository.findById(id);
-//        model.addAttribute("interview", interviewRepository.findById(id));
-//        model.addAttribute("questions", questionRepository.findByInterview(interview));
-////        interview = interviewRepository.findById(id).get();
-////        for(Question question : interview.getQuestions()){
-////
-//            if(question.getAnswer()==null){
-//                model.addAttribute("question", question);
-//            }
+
+        Interview interview = interviewRepository.findById(id);
+
+//        for (Question q : interview.getQuestions()){
+//
 //        }
+
+        model.addAttribute("interview", interview);
+//        model.addAttribute("questions", interview.getQuestions());
+
 
         return "interviewpopup";
     }
 
     @PostMapping("/processpopup")
-    public String processpopup(Question question) {
+    public String processpopup(@ModelAttribute Interview interview) {
 
+        interview.setStatus("Under Review");
+        for(Question question : interview.getQuestions()){
+            System.out.println(question.getAnswer());
+            questionRepository.save(question);
+        }
+
+
+        interviewRepository.save(interview)    ;
             return "redirect:/home";
         }
 

@@ -8,31 +8,37 @@
 <body>
 <th:block th:replace="base :: nav">...</th:block>
 
-<form th:action="@{/processpopup}" th:object="${questions}">
+<form th:action="@{/processpopup}" th:object="${interview}" method="post">
 <!--<input hidden th:object="${question}">-->
 <!--<input type="hidden" id="answer" value="" name="answer">-->
 
-    <div th:each="question : ${questions}">
-       [[{$question.prompt}]]  <input type="text" th:field="*{answer}"><br/>
+<fieldset>
+    <input type="submit" th:value="Save">
+
+    <div th:each="question, itemStat : *{questions}">
+        <p th:inline="text"> [[${question.prompt}]]
+
+        <input th:field="*{questions[__${itemStat.index}__].id}" type="hidden">
+            <input th:field="*{questions[__${itemStat.index}__].prompt}" type="hidden">
+            <input th:field="*{questions[__${itemStat.index}__].interview}" type="hidden">
+        <input th:field="*{questions[__${itemStat.index}__].answer}">
     </div>
 
-    <input type="submit" value="Submit">
-
-
+</fieldset>
+</form>
 
 <!--<script>-->
-    <!--function myFunction() {-->
-        <!--var txt;-->
-        <!--var person = prompt(document.getElementById("question").value, "Answer here");-->
-        <!--if (person == null || person == "") {-->
-            <!--txt = "Applicant chose not to answer this question";-->
-        <!--} else {-->
-            <!--txt = person;-->
-        <!--}-->
-        <!--document.getElementById("answer").innerHTML = txt;-->
-    <!--}-->
+<!--function myFunction() {-->
+<!--var txt;-->
+<!--var person = prompt(document.getElementById("question").value, "Answer here");-->
+<!--if (person == null || person == "") {-->
+<!--txt = "Applicant chose not to answer this question";-->
+<!--} else {-->
+<!--txt = person;-->
+<!--}-->
+<!--document.getElementById("answer").innerHTML = txt;-->
+<!--}-->
 <!--</script>-->
-</form>
 
 <!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
 <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->

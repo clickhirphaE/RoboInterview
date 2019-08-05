@@ -29,7 +29,7 @@ public class Interview {
     private String status;
 
     @OneToMany(mappedBy = "interview")
-    private Set<Question> questions;
+    private List<Question> questions;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private User user;
@@ -38,7 +38,7 @@ public class Interview {
     private JobPosition jobPosition;
 
     public Interview() {
-        questions = new HashSet<Question>();
+        questions = new ArrayList<>();
 
     }
 
@@ -75,9 +75,7 @@ public class Interview {
         this.jobPosition = jobPosition;
     }
 
-    public Set<Question> getQuestions() {
-        return questions;
-    }
+
 
     public void setQuestions(Question question) {
 
@@ -123,5 +121,9 @@ public class Interview {
 
     public void setResume(String resume) {
         this.resume = resume;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
     }
 }
