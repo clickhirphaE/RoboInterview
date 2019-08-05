@@ -4,10 +4,19 @@ import javax.persistence.*;
 
 @Entity
 public class Resume {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    private String title;
 
     private String info;
 

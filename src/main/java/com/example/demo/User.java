@@ -41,6 +41,9 @@ public class User {
     @Column(name="pic")
     private String pic;
 
+    @Column(name="activeResume")
+    private Resume activeResume;
+
     @OneToMany(mappedBy = "user")
     private Set<Resume> resumes;
 
@@ -160,5 +163,13 @@ public class User {
 
     public void setInterviews(Set<Interview> interviews) {
         this.interviews = interviews;
+    }
+
+    public Resume getActiveResume() {
+        return activeResume;
+    }
+
+    public void setActiveResume(Resume activeResume) {
+        this.activeResume = activeResume;
     }
 }

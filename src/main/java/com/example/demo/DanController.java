@@ -49,6 +49,10 @@ public class DanController {
             resume.setUser(user);
         }
 
+        if(user.getActiveResume() == null){
+            user.setActiveResume(resume);
+        }
+
         resume.setInfo(resume.toString(user));
         resumeRepository.save(resume);
         return "redirect:/home";
@@ -136,9 +140,26 @@ public class DanController {
             else {questionRepository.save(question);}
             }
 
-        return "redirect:/index";
+        return "redirect:/home";
 
     }
+
+    @GetMapping("/resumeselection")
+        public String resumeSelection(Model model){
+            model.addAttribute("resumes", userService.getUser().getResumes());
+            model.addAttribute("user", userService.getUser());
+
+            return "resumeselection";
+    }
+
+    @PostMapping("/processselection")
+        public String processSelectition(User user){
+
+        userRepository.save(user);
+
+        return "redirect:/home";
+    }
+
 
 
 
