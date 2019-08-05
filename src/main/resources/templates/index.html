@@ -21,8 +21,7 @@
 <th:block th:replace="base :: nav">...</th:block>
 
 <div th:each="interview : ${interviews}">
-        <div th:each="question : ${interview.getQuestions()}">
-            [[${question}]]<br/>
+        <a th:href="@{/interviewpopup/{id}(id=${interview.id})}">Interview</a>
 
         </div>
 

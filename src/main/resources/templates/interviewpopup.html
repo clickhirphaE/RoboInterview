@@ -2,35 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:replace="base :: Meta">...</th:block>
     <title>Title</title>
 </head>
 <body>
+<th:block th:replace="base :: nav">...</th:block>
+
+<form th:action="@{/processpopup}" th:object="${questions}">
+<!--<input hidden th:object="${question}">-->
+<!--<input type="hidden" id="answer" value="" name="answer">-->
+
+    <div th:each="question : ${questions}">
+       [[{$question.prompt}]]  <input type="text" th:field="*{answer}"><br/>
+    </div>
+
+    <input type="submit" value="Submit">
 
 
 
-<button onclick="myFunction()">Try it</button>
-
-<p id="demo"></p>
-<p id="demo2"></p>
-<input hidden th:object="${question}">
-<input type="hidden" id="answer" value="" name="answer">
-
-<script>
-    function myFunction() {
-        var txt;
-        var person = prompt(document.getElementById("question").value);
-        if (person == null || person == "") {
-            txt = "Applicant chose not to answer this question";
-        } else {
-            txt = person;
-        }
-        document.getElementById("answer").innerHTML = txt;
-    }
-
-
-</script>
-
+<!--<script>-->
+    <!--function myFunction() {-->
+        <!--var txt;-->
+        <!--var person = prompt(document.getElementById("question").value, "Answer here");-->
+        <!--if (person == null || person == "") {-->
+            <!--txt = "Applicant chose not to answer this question";-->
+        <!--} else {-->
+            <!--txt = person;-->
+        <!--}-->
+        <!--document.getElementById("answer").innerHTML = txt;-->
+    <!--}-->
+<!--</script>-->
+</form>
 
 <!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
 <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
@@ -66,6 +68,6 @@
     <!--</div>-->
 <!--</div>-->
 
-
+<th:block th:replace="base :: bootstrap">...</th:block>
 </body>
 </html>

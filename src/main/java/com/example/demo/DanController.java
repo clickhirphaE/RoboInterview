@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -51,6 +52,7 @@ public class DanController {
             resume.setUser(user);
         }
 
+        user.setActiveResume(resume.getTitle());
         resume.setInfo(resume.toString(user));
         resumeRepository.save(resume);
         return "redirect:/home";
@@ -62,29 +64,17 @@ public class DanController {
         model.addAttribute("interview", new Interview());
         model.addAttribute("user_id", userService.getUser().getId());
 
-        ArrayList<String> test = new ArrayList<>();
-
-        for(String word: userService.getUser().getActiveResume().split(" ")) {
-            test.add(word);
-        }
-
-        double i =0;
-        for(String word : JobPosition.keywords){
-            if(test.contains(word)){
-                i++;
-            }
-        }
-        if((keywords.size / i) >= .8){
-            interview.setStatus("Pending interview");
-        }
-
-        return "redirect:/home";
-
-
         return "interviewform";
     }
     @PostMapping("/processinterview")
     public String processInterview(@Valid Interview interview){
+
+        User user = userService.getUser();
+
+        if(interview.getUser()==null){
+            interview.setUser(user);
+        }
+
         //Adding interview questions
 
         Question question = new Question();
@@ -119,10 +109,30 @@ public class DanController {
 
         interview.setStatus("Submitted");
 
+//        ArrayList<String> test = new ArrayList<>();
+//
+//        for(String word: userService.getUser().getActiveResume().split(" ")) {
+//            test.add(word);
+//        }
+//
+//        double i =0;
+//        for(String word : JobPosition.keywords){
+//            if(test.contains(word)){
+//                i++;
+//            }
+//        }
+//        if((keywords.size / i) >= .8){
+//            interview.setStatus("Pending interview");
+//        }
+//        else {
+//            interview.setStatus("Rejected");
+//        }
+
+
         interview.setResume(userService.getUser().getActiveResume());
         interviewRepository.save(interview);
 
-
+        return "redirect:/home";
 
     }
 
@@ -131,7 +141,7 @@ public class DanController {
     @RequestMapping("/home")
     public String index(Model model){
         model.addAttribute("resumes", resumeRepository.findAll());
-        model.addAttribute("interviews", interviewRepository.findAll());
+        model.addAttribute("interviews", userService.getUser().getInterviews());
 
         //Tracks interview Times
 //        for (Interview interview:interviewRepository.findAll()) {
@@ -144,34 +154,29 @@ public class DanController {
         return "index";
     }
 
-    @GetMapping("/interviewpopup")
-    public String popup(Model model, Interview interview ){
-        model.addAttribute("interview", interview);
-
-        for(Question question : interview.getQuestions()){
-
-            if(question.getAnswer().isEmpty()){
-                model.addAttribute("question", question);
-            }
-        }
+    @GetMapping("/interviewpopup/{id}")
+    public String popup(@PathVariable("id") long id, Model model){
+////        Interview interview = interviewRepository.findById(id);
+//        model.addAttribute("interview", interviewRepository.findById(id));
+//        model.addAttribute("questions", questionRepository.findByInterview(interview));
+////        interview = interviewRepository.findById(id).get();
+////        for(Question question : interview.getQuestions()){
+////
+//            if(question.getAnswer()==null){
+//                model.addAttribute("question", question);
+//            }
+//        }
 
         return "interviewpopup";
     }
 
     @PostMapping("/processpopup")
-    public String processpopup(Interview interview){
+    public String processpopup(Question question) {
+
+            return "redirect:/home";
+        }
 
 
-        for(Question question : interview.getQuestions()){
-            if(question.getAnswer().isEmpty()){
-                return "redirect:/interviewpopup";
-            }
-            else {questionRepository.save(question);}
-            }
-
-        return "redirect:/home";
-
-    }
 
     @GetMapping("/resumeselection")
         public String resumeSelection(Model model){
@@ -182,7 +187,7 @@ public class DanController {
     }
 
     @PostMapping("/processselection")
-        public String processSelectition(User user){
+        public String processSelection(User user){
 
         userRepository.save(user);
 

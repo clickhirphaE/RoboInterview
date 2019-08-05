@@ -10,6 +10,15 @@
 <form th:action="@{/processselection}" th:object="${user}" method="post">
 
     Select a Resume to make your active Resume:
+    <input type="hidden" th:field="*{id}">
+    <input type="hidden" th:field="*{email}">
+    <input type="hidden" th:field="*{username}">
+    <input type="hidden" th:field="*{password}">
+    <input type="hidden" th:field="*{firstName}">
+    <input type="hidden" th:field="*{lastName}">
+    <input type="hidden" th:field="*{enabled}">
+    <input type="hidden" th:field="*{phone}">
+    <input type="hidden" th:field="*{pic}">
 
     <select th:field="*{activeResume}">
         <option th:each="resume : ${resumes}"

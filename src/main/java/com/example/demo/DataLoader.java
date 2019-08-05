@@ -45,7 +45,7 @@ public class DataLoader implements CommandLineRunner{
 
 
         JobPosition position = new JobPosition("McDonald", "Dishwasher", 20000.00,"Part-time", "cleaning ,stocking", "cleaning", "Gaithersburg, md","08/02/2019");
-       position.setKeywords("");
+
 
 
         jobPositionRepository.save(position);
