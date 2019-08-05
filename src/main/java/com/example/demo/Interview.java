@@ -19,7 +19,7 @@ public class Interview {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
+    private String title;
 
     private String dateEntry;
 
@@ -119,4 +119,11 @@ public class Interview {
     }
 
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
