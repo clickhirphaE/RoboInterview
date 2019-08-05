@@ -34,25 +34,31 @@
 
 <div class="container-fluid">
 
-
-
+    <!--sec:authorize="hasAuthority('ADMIN')-->
 <!--new card style kepps new position update in csrd-->
-<div class="row" sec:authorize="hasAuthority('ADMIN')">
+<div class="d-flex justify-content-around">
 <!--profile card-->
     <div class="col-sm-3">
-    <div class="card">
-        <img class="card-img-top-rounded-circle" src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=
-        eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Card image cap"
-             >
-        <div class="card-body" >
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="card" >
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=
+            eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
         </div>
-    </div>
 </div>
 <!--job positions-->
-    <div class="col-sm-9">
+    <div class="col-sm-6">
         <div class="card" th:each="jobs: ${jobpositions}">
             <div class="card-body" >
                 <h5 class="card-title">[[${jobs.title}]]</h5>
@@ -76,8 +82,19 @@
         </div>
     </div>
 
-    <div class="row">
-
+            <!--for resume-->
+    <div class="row-fluid">
+        <div class="col">
+        <div class="jumbotron">
+            <h1 class="display-4">Hello, world!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            </p>
+        </div>
+        </div>
     </div>
 
 </div>
@@ -86,17 +103,27 @@
 
     <div class="row" sec:authorize="hasAuthority('USER')">
 
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body" >
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=
+            eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-9">
+        <div class="col-sm-8">
             <div class="card" th:each="jobs: ${jobpositions}">
                 <div class="card-body" >
                     <h5 class="card-title">[[${jobs.title}]]</h5>
