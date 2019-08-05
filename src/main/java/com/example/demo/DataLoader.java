@@ -1,15 +1,21 @@
 package com.example.demo;
 
 
+import com.sun.org.apache.xpath.internal.compiler.Keywords;
+import com.sun.org.apache.xpath.internal.operations.String;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import sun.util.calendar.LocalGregorianCalendar;
+
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 @Component
 public class DataLoader implements CommandLineRunner{
+
     @Autowired
     UserRepository userRepository;
 
@@ -21,8 +27,8 @@ public class DataLoader implements CommandLineRunner{
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
     @Override
+
     public void run(String... strings) throws Exception{
 
 //        Starting Users
@@ -41,9 +47,22 @@ public class DataLoader implements CommandLineRunner{
         userRepository.save(user);
 
 
-//        Starting JobPositions
+//      Starting JobPositions
 
-        JobPosition position = new JobPosition("McDonald", "Dishwasher", 20000.00,"Part-time", "cleaning ,stocking", "cleaning", "Gaithersburg, md","08/02/2019");
+        JobPosition position = new JobPosition();
+
+
+        position.setCompany("Google");
+        position.setTitle("Software developer");
+        position.setSalary(2000.00);
+       position.setKeywords(Arrays.asList(""));
+        position.setAddress("seattle washington");
+        position.setJobType("full-time");
+      position.setPosteddate();
+        position.setDescription("This position requires the skill of developing stuunning application");
+
+
+       //   position = new JobPosition("McDonald", "Dishwasher","customer service", 20000.00,"Part-time", "cleaning ,stocking", "nurse", "Gaithersburg, md","08/1/2019");
 
         jobPositionRepository.save(position);
     }

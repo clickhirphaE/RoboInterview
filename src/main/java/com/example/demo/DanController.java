@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 
 @Controller
 public class DanController {
+
     @Autowired
     InterviewRepository interviewRepository;
 
@@ -113,10 +114,33 @@ public class DanController {
     }
 
     @GetMapping("/interviewpopup")
-    public String popup(Model model, Interview interview){
+    public String popup(Model model, Interview interview ){
         model.addAttribute("interview", interview);
-        model.addAttribute("questions", questionRepository.findByInterview(interview));
+
+        for(Question question : interview.getQuestions()){
+
+            if(question.getAnswer().isEmpty()){
+                model.addAttribute("question", question);
+            }
+        }
 
         return "interviewpopup";
     }
+
+    @PostMapping("/processpopup")
+    public String processpopup(Interview interview){
+        for(Question question : interview.getQuestions()){
+            if(question.getAnswer().isEmpty()){
+                return "redirect:/interviewpopup";
+            }
+            else {questionRepository.save(question);}
+            }
+
+        return "redirect:/index";
+
+    }
+
+
+
+
 }
