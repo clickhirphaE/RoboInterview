@@ -44,12 +44,18 @@
             eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
+
+                <p><i class=""></i></p>
+                <p><i class=""></i></p>
+                <p><i class="fa fa-phone"> 240-501-1021</i> </p>
+                <p><i class=""></i></p>
+
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item"></li>
+                <li class="list-group-item"></li>
+                <li class="list-group-item"></li>
             </ul>
             <div class="card-body">
                 <a href="#" class="card-link">Card link</a>
@@ -85,11 +91,14 @@
             <!--for resume-->
     <div class="row-fluid">
         <div class="col">
-        <div class="jumbotron">
-            <h1 class="display-4">Hello, world!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <div class="jumbotron"
+        th:each="resume: ${resumes}">
+            <h1 class="display-4" th:text="${resume.id}"></h1>
+            <p class="lead">[[${resume.info}]]</p>
             <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <p>
+
+            </p>
             <p class="lead">
                 <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
             </p>
@@ -137,7 +146,10 @@
                     </h6>
                     <p class="card-text">[[${jobs.description}]]</p>
                     <!--       admin authority to update/delete         -->
-
+                    <span sec:authorize="isAuthenticated()">
+                        <a th:href="@{/delete/{id}(id=${jobs.id})}"
+                           class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Apply</a>
+                    </span>
                 </div>
             </div>
         </div>
