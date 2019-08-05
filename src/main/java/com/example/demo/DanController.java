@@ -105,6 +105,7 @@ public class DanController {
         model.addAttribute("resumes", resumeRepository.findAll());
         model.addAttribute("interviews", interviewRepository.findAll());
         model.addAttribute("jobpositions",jobPositionRepository.findAll());
+        model.addAttribute("user_id", userService.getUser());
 
         //Tracks interview Times
 //        for (Interview interview:interviewRepository.findAll()) {

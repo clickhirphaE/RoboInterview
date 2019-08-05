@@ -48,7 +48,7 @@ public class SecurityController {
         if (userService.getUser() == null) {
             return "login";
         } else {
-            return "index";
+            return "redirect:/home";
         }
     }
 
