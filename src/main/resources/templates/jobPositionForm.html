@@ -8,7 +8,8 @@
 </head>
 <body>
 
-<div sec:authorize="hasAuthority('ADMIN')">  //only Admin is authorized to post the new Job openings
+<div sec:authorize="hasAuthority('ADMIN')">
+    <!--//only Admin is authorized to post the new Job openings-->
 
 <th:block th:replace="base :: nav">...</th:block>
 <h4>Fill out the Job Opening Form below</h4>
