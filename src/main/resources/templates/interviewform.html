@@ -12,15 +12,13 @@
 
     <input type="hidden" th:field="*{id}">
 
-    Resume Title:   <input type="text" th:field="*{title}">
-
-
     When would you like to schedule your interview? <br/> <br/>
     <input type="datetime-local" th:field="*{dateEntry}">
         <span th:if="${#fields.hasErrors('endTime')}"
               th:errors="*{endTime}"></span>
 
     <input type="submit" value="Submit">
+
 </form>
 
 
