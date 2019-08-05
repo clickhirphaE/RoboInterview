@@ -13,6 +13,8 @@ import javax.validation.Valid;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Set;
 
 @Controller
 public class DanController {
@@ -49,10 +51,6 @@ public class DanController {
             resume.setUser(user);
         }
 
-        if(user.getActiveResume() == null){
-            user.setActiveResume(resume);
-        }
-
         resume.setInfo(resume.toString(user));
         resumeRepository.save(resume);
         return "redirect:/home";
@@ -63,28 +61,52 @@ public class DanController {
     public String addInterview(Model model){
         model.addAttribute("interview", new Interview());
         model.addAttribute("user_id", userService.getUser().getId());
+
+        ArrayList<String> test = new ArrayList<>();
+
+        for(String word: userService.getUser().getActiveResume().split(" ")) {
+            test.add(word);
+        }
+
+        double i =0;
+        for(String word : JobPosition.keywords){
+            if(test.contains(word)){
+                i++;
+            }
+        }
+        if((keywords.size / i) >= .8){
+            interview.setStatus("Pending interview");
+        }
+
+        return "redirect:/home";
+
+
         return "interviewform";
     }
     @PostMapping("/processinterview")
     public String processInterview(@Valid Interview interview){
-
-
         //Adding interview questions
 
         Question question = new Question();
         question.setPrompt("What is your favorite color?");
         question.setInterview(interview);
         questionRepository.save(question);
+        interview.setQuestions(question);
+        interviewRepository.save(interview);
 
         question = new Question();
         question.setPrompt("Where will you be in 5 years");
         question.setInterview(interview);
         questionRepository.save(question);
+        interview.setQuestions(question);
+        interviewRepository.save(interview);
 
         question = new Question();
         question.setPrompt("Why do you want to work here?");
         question.setInterview(interview);
         questionRepository.save(question);
+        interview.setQuestions(question);
+        interviewRepository.save(interview);
 
         //Start interview timer
 //        interview.setStartTime(LocalDateTime.now());
@@ -97,9 +119,14 @@ public class DanController {
 
         interview.setStatus("Submitted");
 
+        interview.setResume(userService.getUser().getActiveResume());
         interviewRepository.save(interview);
-        return "redirect:/home";
+
+
+
     }
+
+
     //    Main Home Page
     @RequestMapping("/home")
     public String index(Model model){
@@ -133,6 +160,8 @@ public class DanController {
 
     @PostMapping("/processpopup")
     public String processpopup(Interview interview){
+
+
         for(Question question : interview.getQuestions()){
             if(question.getAnswer().isEmpty()){
                 return "redirect:/interviewpopup";

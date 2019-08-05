@@ -8,9 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Interview {
@@ -19,7 +17,6 @@ public class Interview {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
     private String dateEntry;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
@@ -27,6 +24,7 @@ public class Interview {
     private double checkTime;
     private LocalDateTime endTime;
 
+    private String resume;
 
     private String status;
 
@@ -40,6 +38,8 @@ public class Interview {
     private JobPosition jobPosition;
 
     public Interview() {
+        questions = new HashSet<Question>();
+
     }
 
 
@@ -79,9 +79,9 @@ public class Interview {
         return questions;
     }
 
-    public void setQuestions(Question prompt) {
+    public void setQuestions(Question question) {
 
-        this.questions.add(prompt);
+        this.questions.add(question);
     }
 
     public LocalDateTime getStartTime() {
@@ -115,5 +115,13 @@ public class Interview {
 
     public void setDateEntry(String dateEntry) {
         this.dateEntry = dateEntry;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
     }
 }

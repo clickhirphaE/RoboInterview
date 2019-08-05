@@ -4,13 +4,6 @@ import javax.persistence.*;
 
 @Entity
 public class Resume {
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -80,6 +73,14 @@ public class Resume {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String toString(User user){

@@ -7,14 +7,14 @@
 </head>
 <body>
 
-<form th:action="@{/processselection}" th:object="*{user}" method="post">
+<form th:action="@{/processselection}" th:object="${user}" method="post">
 
     Select a Resume to make your active Resume:
 
     <select th:field="*{activeResume}">
         <option th:each="resume : ${resumes}"
                 th:text="${resume.title}"
-                th:value="${resume.id}">
+                th:value="${resume.title}">
         </option>
 
     </select>

@@ -2,7 +2,6 @@ package com.example.demo;
 
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 import javax.persistence.*;
@@ -41,8 +40,8 @@ public class User {
     @Column(name="pic")
     private String pic;
 
-    @Column(name="activeResume")
-    private Resume activeResume;
+    @Column(name="active_resume")
+    private String activeResume;
 
     @OneToMany(mappedBy = "user")
     private Set<Resume> resumes;
@@ -165,11 +164,12 @@ public class User {
         this.interviews = interviews;
     }
 
-    public Resume getActiveResume() {
+
+    public String getActiveResume() {
         return activeResume;
     }
 
-    public void setActiveResume(Resume activeResume) {
+    public void setActiveResume(String activeResume) {
         this.activeResume = activeResume;
     }
 }
