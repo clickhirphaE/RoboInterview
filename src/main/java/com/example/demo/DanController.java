@@ -2,6 +2,7 @@ package com.example.demo;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -59,13 +60,12 @@ public class DanController {
     }
 
     //    New Interview Form
-    @GetMapping("/interviewform")
-    public String addInterview(Model model){
-        model.addAttribute("interview", new Interview());
-        model.addAttribute("user_id", userService.getUser().getId());
-
-        return "interviewform";
-    }
+//    @GetMapping("/interviewform")
+//    public String addInterview(Model model){
+//        model.addAttribute("interview", new Interview());
+//        model.addAttribute("user_id", userService.getUser().getId());
+//        return "interviewform";
+//    }
     @PostMapping("/processinterview")
     public String processInterview(@Valid Interview interview){
 

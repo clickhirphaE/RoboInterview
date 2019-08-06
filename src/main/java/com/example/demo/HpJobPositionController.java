@@ -20,6 +20,8 @@ public class HpJobPositionController {
      JobPositionRepository jobPositionRepository;
     @Autowired
      UserService userService;
+    @Autowired
+    InterviewRepository interviewRepository;
 
     @GetMapping("/jobPositionForm")
     public String addJobPosition(Model model){
@@ -38,7 +40,7 @@ public class HpJobPositionController {
      //
     @RequestMapping("/apply/{id}")
     public String jobPositionDetail(@PathVariable("id") long id, Model model){
-        model.addAttribute("job", jobPositionRepository.findById(id).get());
+        model.addAttribute("job", jobPositionRepository.findById(id));
         if(userService.getUser()!=null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
@@ -47,7 +49,7 @@ public class HpJobPositionController {
     }
     @RequestMapping("/update/{id}")
     public String updateJobPosition(@PathVariable("id") long id, Model model){
-        model.addAttribute("job", jobPositionRepository.findById(id).get());
+        model.addAttribute("job", jobPositionRepository.findById(id));
         return "jobPositionForm";
     }
     @RequestMapping("/delete/{id}")
@@ -56,27 +58,37 @@ public class HpJobPositionController {
         return "redirect:/home";
     }
 
-//    @PostMapping("/apply")
-//    public String apply(){
-//        ArrayList<String> test = new ArrayList<>();
-////
-//        for(String word: userService.getUser().getActiveResume().split(" ")) {
-//            test.add(word);
-//        }
-//
-//        double i =0;
-//        for(String word : JobPosition.keyword){
-//            if(test.contains(word)){
-//                i++;
-//            }
-//        }
-//        if((keyword.size / i) >= .8){
-//            interview.setStatus("Pending interview");
-//        }
-//        else {
-//            interview.setStatus("Rejected");
-//        }
-//    }
+    @RequestMapping("/finalapply/{id}")
+    public String apply(@PathVariable("id") long id, Model model){
+        ArrayList<String> test = new ArrayList<>();
+        model.addAttribute("jobPosition", jobPositionRepository.findById(id));
+        for(String word: userService.getUser().getActiveResume().split(" ")) {
+            test.add(word);
+        }
+
+        JobPosition jobPosition =jobPositionRepository.findById(id);
+        double i =0;
+        for(String word : jobPosition.getKeywords()){
+            if(test.contains(word)){
+                i++;
+            }
+        }
+        if((jobPosition.getKeywords().size() / i) >= .8){
+            Interview interview = new Interview();
+            interview.setJobPosition(jobPositionRepository.findById(id));
+            interview.setUser(userService.getUser());
+            model.addAttribute("interview", interview);
+            return "interviewform";
+        }
+        else {
+             Interview interview = new Interview();
+            interview.setStatus("Rejected");
+            interview.setUser(userService.getUser());
+            interview.setJobPosition(jobPositionRepository.findById(id));
+            interviewRepository.save(interview);
+            return "redirect:/home";
+        }
+    }
 
 
 
