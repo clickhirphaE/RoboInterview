@@ -1,6 +1,9 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,7 +17,8 @@ public class JobPosition {
 
     private String title;
 
-    private String keywords;
+    private Set<String> keyword;
+
     private Double salary;
 
     private String jobType;
@@ -25,33 +29,39 @@ public class JobPosition {
 
     private  String posteddate;
 
+//        switched to string
+//    private Date posteddate;
+
     @OneToMany(mappedBy = "jobPosition")
     private Set<Interview> jobInterviews;
   //  private Set<JobList> joblist;
     public JobPosition(){
+      keyword = new HashSet<String>();
 
     }
 
-    public JobPosition(String company, String title, Double salary, String jobType, String description,String keywords, String address, String posteddate) {
+    public JobPosition(String company, String title, Double salary, String jobType, String description, String address,String posteddate) {
+        this.company = company;
         this.title = title;
         this.salary = salary;
         this.jobType = jobType;
         this.description = description;
         this.address = address;
-        this.company=company;
-        this.keywords=keywords;
-        this.posteddate=posteddate;
+        this.posteddate = posteddate;
+//        this.jobInterviews = jobInterviews;
+        keyword = new HashSet<String>();
     }
+
 
     public long getId() {
         return id;
     }
-    public String getKeywords() {
-        return keywords;
+    public Set<String> getKeywords() {
+        return keyword;
     }
 
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
+    public void  setKeywords(String keywords) {
+        this.keyword.add(keywords);
     }
     public void setId(long id) {
         this.id = id;
@@ -104,15 +114,19 @@ public class JobPosition {
 
         this.address = address;
     }
-    public String getPosteddate() {
-        return posteddate;
-    }
-
-    public void setPosteddate(String posteddate) {
-
-
-        this.posteddate =posteddate;
-    }
+//    public Date getPosteddate() {
+//        return posteddate;
+//    }
+//
+//    public void setPosteddate(Date posteddate) {
+//           // new Date();
+//        this.posteddate =posteddate;
+//
+//
+//        posteddate.toString();
+//
+//
+//    }
 
     public Set<Interview> getJobInterviews() {
         return jobInterviews;
@@ -124,5 +138,13 @@ public class JobPosition {
         this.jobInterviews = jobInterviews;
 
 
+    }
+
+    public String getPosteddate() {
+        return posteddate;
+    }
+
+    public void setPosteddate(String posteddate) {
+        this.posteddate = posteddate;
     }
 }

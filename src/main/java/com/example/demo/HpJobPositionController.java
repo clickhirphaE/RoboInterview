@@ -40,7 +40,6 @@ public class HpJobPositionController {
             model.addAttribute("user_id", userService.getUser().getId());
         }
 
-
         return "processJobPosition";
     }
     @RequestMapping("/update/{id}")
