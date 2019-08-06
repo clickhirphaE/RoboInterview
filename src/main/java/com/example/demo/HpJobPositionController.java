@@ -55,6 +55,11 @@ public class HpJobPositionController {
         jobPositionRepository.deleteById(id);
         return "redirect:/home";
     }
+    @GetMapping("/profile")
+    public String profile(Model model){
+
+        return "profile";
+    }
 
 //    @PostMapping("/apply")
 //    public String apply(){

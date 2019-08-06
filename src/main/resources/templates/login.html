@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 <head>
     <th:block th:replace="base :: Meta">...</th:block>
     <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+    <style>
+
+        .submit-btn {
+        border-radius: 1px;
+        }
+        input
+        {
+            border-radius: 1px;
+        }
+          h2{
+              font-family: 'Zhi Mang Xing', cursive;
+          }
+    </style>
 </head>
 <body>
 <th:block th:replace="base :: nav">...</th:block>
-<h1>Login Page</h1>
+<center style="margin-top: 8%"><table style="border-radius: 1%"><h2>Login with your Username & Password</h2>
 <div th:if="${param.error}">
     invalid username or password
 </div>
@@ -17,13 +31,15 @@
 </div>
 
 <form th:action="@{/login}" method="post">
-    <div><label>User Name:  <input type="text" name="username"/></label></div>
 
-    <div><label>Password:  <input type="password" name="password"/></label></div>
+    <div><label><strong>User Name:  <input type="text" name="username" required/></strong></label></div>
 
-    <div> <input type="submit" value="Sign in"/></div>
+    <div><label><strong><strong>Password:  <input type="password" name="password" required/></strong></label></div>
+
+    <div class="submit-btn"> <input type="submit" value="Sign in"/></div>
+
 </form>
-
+</table></center>
 <th:block th:replace="base :: bootstrap">...</th:block>
 </body>
 </html>
