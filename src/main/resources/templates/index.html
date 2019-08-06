@@ -49,12 +49,14 @@
                 <p><i class="fa fa-phone"></i> [[${user_id.phone}]]</p>
                 <p><i class="fa fa-linkedin" aria-hidden="true"></i></p>
 
-                <p class="card-text">Some status update</p>
+                <p class="card-text"></p>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"></li>
             </ul>
             <div class="card-body">
+                <p th:text=""></p>
+<!--       modal button trigger here          -->
                 <a href="#" class="card-link">Card link</a>
                 <a href="#" class="card-link">Another link</a>
             </div>
@@ -114,9 +116,26 @@
 
 </div>
 
-    <!--what user see-->
-
-    <!--<div class="row" sec:authorize="hasAuthority('USER')">-->
+<!--  modal function -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

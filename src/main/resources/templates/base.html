@@ -12,47 +12,96 @@
 
 <th:block th:fragment="navbar">
 
+<!--    <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav ml-auto">-->
+<!--                <li class="nav-item">-->
+<!--                <a class="nav-link" href="/home">Home</a>-->
+<!--                </li>-->
+<!--                <li sec:authorize="isAuthenticated()" class="nav-link text-warning" th:inline="text">-->
+<!--                <span th:text="${#authentication.name}"></span>-->
+<!--                </li>-->
+<!--                <div sec:authorize="hasAuthority('USER')">-->
+
+<!--                    <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/resumeform">New Resume</a>-->
+<!--                    </li>-->
+
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/logout">Log Out</a>-->
+<!--                    </li>-->
+
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/interviewform">New Interview</a>-->
+<!--                    </li>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;add new position nav link for admin&ndash;&gt;-->
+<!--                &lt;!&ndash;add logout nav link for admin&ndash;&gt;-->
+<!--                &lt;!&ndash;remove register nav link for admin&ndash;&gt;-->
+
+<!--                <div sec:authorize="!isAuthenticated()">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/register">Register</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/login">Log In</a>-->
+<!--                </li>-->
+
+<!--                </div>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </nav>-->
+<div class="container-fluid">
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
+        <a class="navbar-brand" href="#">Welcome [[${#authentication.name}]]</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <li class="nav-item" sec:authorize="">
+            <a class="nav-link" href="/register">Register</a>
+        </li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent"
+        sec:authorize="isAuthenticated()">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+                </li>
+
                 <li class="nav-item">
-                <a class="nav-link" href="/home">Home</a>
+                    <a class="nav-link" href="/logout">Logout</a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-link text-warning" th:inline="text">
-                <span th:text="${#authentication.name}"></span>
-                </li>
-                <div sec:authorize="hasAuthority('USER')">
 
-                    <li class="nav-item">
-                    <a class="nav-link" href="/resumeform">New Resume</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Log Out</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/interviewform">New Interview</a>
-                    </li>
-                </div>
-                <!--add new position nav link for admin-->
-                <!--add logout nav link for admin-->
-                <!--remove register nav link for admin-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Dropdown
+                    </a>
 
-                <div sec:authorize="!isAuthenticated()">
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                        <div sec:authorize="hasAuthority('USER')">
+                        <a class="dropdown-item" href="/interviewform">New Interview</a>
+                        <a class="dropdown-item" href="/resumeform">New Resume</a></div>
+                        <div class="dropdown-divider"></div>
+
+                        <a sec:authorize="hasAuthority('ADMIN')" class="dropdown-item" href="/jobPositionForm">New Job Position</a>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Log In</a>
+                    <a class="nav-link disabled" href="#">Disabled</a>
                 </li>
-
-                </div>
             </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
     </nav>
 
-
+    </div>
 
 
 </th:block>
