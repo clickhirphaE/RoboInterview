@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 
 @Component
-public class DataLoader implements CommandLineRunner{
+public class DataLoader implements CommandLineRunner {
     @Autowired
     UserRepository userRepository;
 
@@ -23,7 +23,7 @@ public class DataLoader implements CommandLineRunner{
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public void run(String... strings) throws Exception{
+    public void run(String... strings) throws Exception {
 
 //        Starting Users
         roleRepository.save(new Role("USER"));
@@ -42,12 +42,16 @@ public class DataLoader implements CommandLineRunner{
 
 
 //        Starting JobPositions
+        JobPosition position = new JobPosition("McDonald", "Dishwasher", 20000.00,"Part-Time", "cleaning ,stocking", "nurse", "Gaithersburg, md","08/1/2019");
+        jobPositionRepository.save(position);
 
-
-        JobPosition position = new JobPosition("McDonald", "Dishwasher", 20000.00,"Part-time", "cleaning ,stocking", "cleaning", "Gaithersburg, md","08/02/2019");
-
-
+        position = new JobPosition("Aldi", "Cashier", 14.30 , "Part-Time",
+                " As a store employee, you're also responsible for merchandising product, monitoring inventory and keeping the store looking its best. " +
+                        "It's an opportunity to get more out of your career and grow in an exciting environment.","cashier, register, products, customer service",
+                "Gaithersburg, MD", "08/02/2019");
 
         jobPositionRepository.save(position);
+
     }
 }
+

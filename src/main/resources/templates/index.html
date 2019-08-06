@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:replace="base :: Meta">...</th:block>
 
@@ -8,169 +8,128 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
     <title>HomePage</title>
 </head>
 <style>
-    html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+
+    .card{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 5px; /* 5px rounded corners */
+
+    }
 </style>
-<body class="w3-light-grey">
+<body>
 
 <th:block th:replace="base :: nav">...</th:block>
+<a href="/jobPositionForm">New Position</a>
+<!--<div sec:authorize="hasAuthority('ADMIN')">-->
 
-<div th:each="interview : ${interviews}">
-        <a th:href="@{/interviewpopup/{id}(id=${interview.id})}">Interview</a>
+<!--/*<div th:each="interview : ${interviews}">*/-->
+<!--    /*        <a th:href="@{/interviewpopup/{id}(id=${interview.id})}">Interview</a>*/-->
 
+
+<div class="container-fluid">
+
+    <!--sec:authorize="hasAuthority('ADMIN')-->
+<!--new card style kepps new position update in csrd-->
+<div class="d-flex justify-content-around">
+<!--profile card-->
+    <div class="col-sm-3">
+        <div class="card" >
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=
+            eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title fa fa-user-circle"><b> [[${user_id.lastName}]], [[${user_id.firstName}]]</b> </h5>
+
+                <p><i class="fa fa-envelope-open-o"></i> [[${user_id.email}]]</p>
+                <p><i class="fa fa-phone"></i> [[${user_id.phone}]]</p>
+                <p><i class="fa fa-linkedin" aria-hidden="true"></i></p>
+
+                <p class="card-text">Some status update</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"></li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
         </div>
+</div>
+<!--job positions-->
+    <div class="col-sm-6">
+        <div class="card" th:each="jobs: ${jobpositions}">
+            <div class="card-body" >
+                <h5 class="card-title">[[${jobs.title}]]</h5>
+                <h6 class="card-sub-title">
+                    <span>
+                        <p>[[${jobs.posteddate}]]</p>
+                     <p>[[${jobs.jobType}]]</p>
+
+                </span>
+
+                </h6>
+                <p class="card-text">[[${jobs.description}]]</p>
+                <!--       admin authority to update/delete         -->
+                <div sec:authorize="hasAuthority('ADMIN')">
+                <span>
+                        <a th:href="@{/update/{id}(id=${jobs.id})}"
+                           class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Update</a>
+                        <a th:href="@{/delete/{id}(id=${jobs.id})}"
+                           class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Delete</a>
+                    </span>
+                </div>
+                <div sec:authorize="hasAuthority('USER')">
+                    <span>
+                        <a th:href="@{/resumeform}"
+                           class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Apply</a>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+            <!--for resume-->
+    <div class="row-fluid">
+        <div class="col">
+        <div class="jumbotron"
+        th:each="resume : ${resumes}">
+            <h1 class="display-4" th:text="${resume.id}"></h1>
+            <p class="lead">[[${resume.info}]]</p>
+            <hr class="my-4">
+            <p>
+
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            </p>
+        </div>
+        </div>
+    </div>
 
 </div>
 
-<br>
-<!--admin page-->
-<!-- Page Container -->
-<!--<div class="w3-content w3-margin-top" style="max-width:1200px;">-->
+    <!--what user see-->
 
-    <!--&lt;!&ndash; The Grid &ndash;&gt;-->
-    <!--<div class="w3-row-padding">-->
-
-        <!--&lt;!&ndash; Left Column &ndash;&gt;-->
-        <!--<div class="w3-third">-->
-
-            <!--<div class="w3-white w3-text-grey w3-card-4">-->
-                <!--<div class="w3-display-container">-->
-                    <!--&lt;!&ndash;<img th:src="${user.getPic()}" style="width:100%" alt="Avatar">&ndash;&gt;-->
-                    <!--<div class="w3-display-bottomleft w3-container w3-text-black">-->
-                        <!--&lt;!&ndash;<h2 th:text="${user.firstName + user.LastName}"></h2>&ndash;&gt;-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="w3-container">-->
-                    <!--<p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Title</p>-->
-                    <!--<p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>London, UK</p>-->
-                    <!--<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>Emails</p>-->
-                    <!--<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>Phone Number</p>-->
-                    <!--<hr>-->
-
-                    <!--<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Positions</b></p>-->
-                    <!--<p>Position 1</p>-->
-                    <!--<div class="w3-light-grey w3-round-xlarge w3-small">-->
-                        <!--<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">90%</div>-->
-                    <!--</div>-->
-                    <!--<p>Positoin 2</p>-->
-                    <!--<div class="w3-light-grey w3-round-xlarge w3-small">-->
-                        <!--<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">-->
-                            <!--<div class="w3-center w3-text-white">80%</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<p>Illustrator</p>-->
-                    <!--<div class="w3-light-grey w3-round-xlarge w3-small">-->
-                        <!--<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:75%">75%</div>-->
-                    <!--</div>-->
-                    <!--<p>Media</p>-->
-                    <!--<div class="w3-light-grey w3-round-xlarge w3-small">-->
-                        <!--<div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:50%">50%</div>-->
-                    <!--</div>-->
-                    <!--<br>-->
-
-                    <!--<p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>-->
-                    <!--<p>English</p>-->
-                    <!--<div class="w3-light-grey w3-round-xlarge">-->
-                        <!--<div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>-->
-                    <!--</div>-->
-                    <!--<p>Spanish</p>-->
-                    <!--<div class="w3-light-grey w3-round-xlarge">-->
-                        <!--<div class="w3-round-xlarge w3-teal" style="height:24px;width:55%"></div>-->
-                    <!--</div>-->
-                    <!--<p>German</p>-->
-                    <!--<div class="w3-light-grey w3-round-xlarge">-->
-                        <!--<div class="w3-round-xlarge w3-teal" style="height:24px;width:25%"></div>-->
-                    <!--</div>-->
-                    <!--<br>-->
-                <!--</div>-->
-            <!--</div><br>-->
-
-            <!--&lt;!&ndash; End Left Column &ndash;&gt;-->
-        <!--</div>-->
-
-        <!--&lt;!&ndash; Right Column &ndash;&gt;-->
-        <!--<div class="w3-twothird">-->
-                <!--&lt;!&ndash;change authority to show admin&ndash;&gt;-->
-            <!--<div class="w3-container w3-card w3-white w3-margin-bottom">-->
-                <!--<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>-->
-                <!--<div class="w3-container">-->
-                    <!--<h5 class="w3-opacity"><b>Front End Developer / w3schools.com</b></h5>-->
-                    <!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 - <span class="w3-tag w3-teal w3-round">Current</span></h6>-->
-                    <!--<p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>-->
-                    <!--<hr>-->
-                <!--</div>-->
-                <!--<div class="w3-container">-->
-                    <!--<h5 class="w3-opacity"><b>Web Developer / something.com</b></h5>-->
-                    <!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Mar 2012 - Dec 2014</h6>-->
-                    <!--<p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>-->
-                    <!--<hr>-->
-                <!--</div>-->
-                <!--<div class="w3-container">-->
-                    <!--<h5 class="w3-opacity"><b>Graphic Designer / designsomething.com</b></h5>-->
-                    <!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6>-->
-                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p><br>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="w3-container w3-card w3-white">-->
-                <!--<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Job Positions</h2>-->
-                <!--<a href="#">Add New Position</a>-->
-                <!--&lt;!&ndash;<div class="w3-container" th:each="">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<h5 class="w3-opacity"><b>Position 1</b></h5>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Job Type Here</h6>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<p>Web Development! All I need to know in one place</p>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;<a class="side-by-side" th:href="@{/update/{id}(id=${thejob.id})}">Update</a>&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;<a class="side-by-side" th:href="@{/detail/{id}(id=${thejob.id})}">Details</a>&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;<a class="side-by-side" th:href="@{/delete/{id}(id=${thejob.id})}">Delete</a>&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<hr>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--<div class="w3-container">-->
-                    <!--<h5 class="w3-opacity"><b>Position 2</b></h5>-->
-                    <!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Job Type Here</h6>-->
-                    <!--<p>Master Degree</p>-->
-                    <!--&lt;!&ndash;<a class="side-by-side" th:href="@{/update/{id}(id=${thejob.id})}">Update</a>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<a class="side-by-side" th:href="@{/detail/{id}(id=${thejob.id})}">Details</a>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<a class="side-by-side" th:href="@{/delete/{id}(id=${thejob.id})}">Delete</a>&ndash;&gt;-->
-                    <!--<hr>-->
-                <!--</div>-->
-                <!--<div class="w3-container">-->
-                    <!--<h5 class="w3-opacity"><b>Position 3</b></h5>-->
-                    <!--<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2010 - 2013</h6>-->
-                    <!--<p>Bachelor Degree</p><br>-->
-                <!--</div>-->
+    <!--<div class="row" sec:authorize="hasAuthority('USER')">-->
 
 
-            <!--</div>-->
 
-            <!--&lt;!&ndash; End Right Column &ndash;&gt;-->
-        <!--</div>-->
-
-        <!--&lt;!&ndash; End Grid &ndash;&gt;-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash; End Page Container &ndash;&gt;-->
-<!--</div>-->
-
-<!--<footer class="w3-container w3-teal w3-center w3-margin-top">-->
-    <!--<p>Find me on social media.</p>-->
-    <!--<i class="fa fa-facebook-official w3-hover-opacity"></i>-->
-    <!--<i class="fa fa-instagram w3-hover-opacity"></i>-->
-    <!--<i class="fa fa-snapchat w3-hover-opacity"></i>-->
-    <!--<i class="fa fa-pinterest-p w3-hover-opacity"></i>-->
-    <!--<i class="fa fa-twitter w3-hover-opacity"></i>-->
-    <!--<i class="fa fa-linkedin w3-hover-opacity"></i>-->
-    <!--<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>-->
-<!--</footer>-->
-<!--&gt;>>>>>> 3d4c7b1adcf332136d17bc0cbece92ef280eb34d-->
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <p>Find me on social media.</p>
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p>Developed by: <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">Dan.Hirpha.Kelly</a></p>
+</footer>
 
 
 <th:block th:replace="base :: bootstrap">...</th:block>
+
 </body>
 </html>

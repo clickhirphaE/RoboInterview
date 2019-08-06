@@ -32,6 +32,9 @@ public class DanController {
     @Autowired
     QuestionRepository questionRepository;
 
+    @Autowired
+    JobPositionRepository jobPositionRepository;
+
     //    New Resume Form
     @GetMapping("/resumeform")
     public String addResume( Model model){
@@ -139,6 +142,9 @@ public class DanController {
     public String index(Model model){
         model.addAttribute("resumes", resumeRepository.findAll());
         model.addAttribute("interviews", userService.getUser().getInterviews());
+        model.addAttribute("jobpositions",jobPositionRepository.findAll());
+        model.addAttribute("user_id", userService.getUser());
+
 
         //Tracks interview Times
 //        for (Interview interview:interviewRepository.findAll()) {
