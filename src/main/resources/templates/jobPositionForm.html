@@ -8,8 +8,12 @@
 </head>
 <body>
 <th:block th:replace="base :: nav">...</th:block>
-<div sec:authorize="hasAuthority('ADMIN')">  <!--only Admin is authorized to post the new Job openings-->
-<div><h4>Fill out the Job Opening Form below</h4>
+<div sec:authorize="hasAuthority('ADMIN')">
+    <!--//only Admin is authorized to post the new Job openings-->
+
+
+<h4>Fill out the Job Opening Form below</h4>
+
 <form th:action="@{/processJobPosition}" th:object="${job}" method="post">
 
     <input type="hidden" th:field="*{id}"/>
@@ -30,8 +34,6 @@
           th:errors="*{salary}">salary has Error</span></strong></mark>
     <input type="text" id="salary" placeholder="salary"
            th:field="*{salary}"/><br/>
-
-   <!--//option for job type ....-->
 
     Job Type: <mark><strong>
     <span th:if="${#fields.hasErrors('jobType')}"

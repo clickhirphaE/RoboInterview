@@ -9,6 +9,8 @@ public class Resume {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private String title;
+
     private String info;
 
     private String education;
@@ -73,8 +75,16 @@ public class Resume {
         this.user = user;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String toString(User user){
-        String infoString = "Information: \nName:  " + user.getFirstName() + " " + user.getLastName() + "\nEmail:  " + user.getEmail() + "\nPhone Number:  " + user.getPhone();
+        String infoString = "Name:  " + user.getFirstName() + " " + user.getLastName() + "\nEmail:  " + user.getEmail() + "\nPhone Number:  " + user.getPhone();
         return infoString;
     }
 }

@@ -1,12 +1,8 @@
 package com.example.demo;
 
-import com.sun.org.apache.xpath.internal.compiler.Keywords;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class JobPosition {
@@ -15,14 +11,12 @@ public class JobPosition {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
-
     private String company;
+
     private String title;
 
+    private ArrayList<String> keyword;
 
-
-    private Set<Keywords> keyword;
     private Double salary;
 
     private String jobType;
@@ -31,39 +25,41 @@ public class JobPosition {
 
     private String address;
 
+    private  String posteddate;
 
-    private Date posteddate;
-
+//        switched to string
+//    private Date posteddate;
 
     @OneToMany(mappedBy = "jobPosition")
     private Set<Interview> jobInterviews;
   //  private Set<JobList> joblist;
     public JobPosition(){
-      new HashSet<String>();
-
+      keyword = new ArrayList<>();
+      jobInterviews = new HashSet<>();
     }
 
-    public JobPosition(String company, String title, Set<Keywords> keyword, Double salary, String jobType, String description, String address,Date posteddate, Set<Interview> jobInterviews) {
+    public JobPosition(String company, String title, Double salary, String jobType, String description, String address,String posteddate) {
         this.company = company;
         this.title = title;
-        this.keyword = keyword;
         this.salary = salary;
         this.jobType = jobType;
         this.description = description;
         this.address = address;
         this.posteddate = posteddate;
-        this.jobInterviews = jobInterviews;
+//        this.jobInterviews = jobInterviews;
+        keyword = new ArrayList<>();
+        jobInterviews = new HashSet<>();
     }
 
 
     public long getId() {
         return id;
     }
-    public Set<Keywords> getKeywords() {
+    public ArrayList<String> getKeywords() {
         return keyword;
     }
 
-    public void  setKeywords(Keywords keywords) {
+    public void  setKeywords(String keywords) {
         this.keyword.add(keywords);
     }
     public void setId(long id) {
@@ -117,19 +113,19 @@ public class JobPosition {
 
         this.address = address;
     }
-    public Date getPosteddate() {
-        return posteddate;
-    }
-
-    public void setPosteddate(Date posteddate) {
-           // new Date();
-        this.posteddate =posteddate;
-
-
-        posteddate.toString();
-
-
-    }
+//    public Date getPosteddate() {
+//        return posteddate;
+//    }
+//
+//    public void setPosteddate(Date posteddate) {
+//           // new Date();
+//        this.posteddate =posteddate;
+//
+//
+//        posteddate.toString();
+//
+//
+//    }
 
     public Set<Interview> getJobInterviews() {
         return jobInterviews;
@@ -141,5 +137,13 @@ public class JobPosition {
         this.jobInterviews = jobInterviews;
 
 
+    }
+
+    public String getPosteddate() {
+        return posteddate;
+    }
+
+    public void setPosteddate(String posteddate) {
+        this.posteddate = posteddate;
     }
 }

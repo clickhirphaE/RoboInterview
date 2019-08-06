@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:replace="base :: Meta">...</th:block>
 
@@ -8,23 +8,130 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
     <title>HomePage</title>
 </head>
 <style>
-    html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+
+    .card{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 5px; /* 5px rounded corners */
+    }
 </style>
-<body class="w3-light-grey">
+<body>
 
 <th:block th:replace="base :: nav">...</th:block>
+<a href="/jobPositionForm">New Position</a>
+<!--<div sec:authorize="hasAuthority('ADMIN')">-->
 
-<div th:each="interview : ${interviews}">
-        <div th:each="question : ${interview.getQuestions()}">
-            [[${question}]]<br/>
-        </div></div>
-<br>
+<!--<div th:each="interview : ${interviews}">*/-->
+            <!--<a th:href="@{/interviewpopup/{id}(id=${interview.id})}">Interview</a>-->
+
+<!--potential conflict-->
+<div class="container-fluid">
+
+    <!--sec:authorize="hasAuthority('ADMIN')-->
+<!--new card style kepps new position update in csrd-->
+<div class="d-flex justify-content-around">
+<!--profile card-->
+    <div class="col-sm-3">
+        <div class="card" >
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=
+            eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title fa fa-user-circle"><b> [[${user_id.lastName}]], [[${user_id.firstName}]]</b> </h5>
+
+                <p><i class="fa fa-envelope-open-o"></i> [[${user_id.email}]]</p>
+                <p><i class="fa fa-phone"></i> [[${user_id.phone}]]</p>
+                <p><i class="fa fa-linkedin" aria-hidden="true"></i></p>
+
+                <p class="card-text">Some status update</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"></li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+</div>
+<!--job positions-->
+    <div class="col-sm-6">
+        <div class="card" th:each="jobs: ${jobpositions}">
+            <div class="card-body" >
+                <h5 class="card-title">[[${jobs.title}]]</h5>
+                <h6 class="card-sub-title">
+                    <span>
+                        <p>[[${jobs.posteddate}]]</p>
+                     <p>[[${jobs.jobType}]]</p>
+
+                </span>
+
+                </h6>
+                <p class="card-text">[[${jobs.description}]]</p>
+                <!--       admin authority to update/delete         -->
+                <div sec:authorize="hasAuthority('ADMIN')">
+                <span>
+                        <a th:href="@{/update/{id}(id=${jobs.id})}"
+                           class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Update</a>
+                        <a th:href="@{/delete/{id}(id=${jobs.id})}"
+                           class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Delete</a>
+                    </span>
+                </div>
+                <div sec:authorize="hasAuthority('USER')">
+                    <span>
+                        <a th:href="@{/apply/{id}(id=${jobs.id})}"
+                           class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Apply</a>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+            <!--for resume-->
+    <div class="row-fluid">
+        <div class="col">
+        <div class="jumbotron"
+        th:each="resume : ${resumes}">
+            <h1 class="display-4" th:text="${resume.id}"></h1>
+            <p class="lead">[[${resume.info}]]</p>
+            <hr class="my-4">
+            <p>
+
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            </p>
+        </div>
+        </div>
+    </div>
+
+</div>
+</div>
+    <!--what user see-->
+
+    <!--<div class="row" sec:authorize="hasAuthority('USER')">-->
+
+
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <p>Find me on social media.</p>
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p>Developed by: <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">Dan.Hirpha.Kelly</a></p>
+</footer>
+
+<!--<div th:each="interview : ${interviews}">-->
+<!--        <div th:each="question : ${interview.getQuestions()}">-->
+<!--            [[${question}]]<br/>-->
+<!--        </div></div>-->
+<!--<br>-->
 
 
 <!--admin page-->
@@ -170,6 +277,8 @@
 <!--&gt;>>>>>> 3d4c7b1adcf332136d17bc0cbece92ef280eb34d-->
 
 
+
 <th:block th:replace="base :: bootstrap">...</th:block>
+
 </body>
 </html>

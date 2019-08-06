@@ -2,35 +2,43 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:replace="base :: Meta">...</th:block>
     <title>Title</title>
 </head>
 <body>
+<th:block th:replace="base :: nav">...</th:block>
 
+<form th:action="@{/processpopup}" th:object="${interview}" method="post">
+<!--<input hidden th:object="${question}">-->
+<!--<input type="hidden" id="answer" value="" name="answer">-->
 
+<fieldset>
+    <input type="submit" th:value="Save">
 
-<button onclick="myFunction()">Try it</button>
+    <div th:each="question, itemStat : *{questions}">
+        <p th:inline="text"> [[${question.prompt}]]
 
-<p id="demo"></p>
-<p id="demo2"></p>
-<input hidden th:object="${question}">
+        <input th:field="*{questions[__${itemStat.index}__].id}" type="hidden">
+            <input th:field="*{questions[__${itemStat.index}__].prompt}" type="hidden">
+            <input th:field="*{questions[__${itemStat.index}__].interview}" type="hidden">
+        <input th:field="*{questions[__${itemStat.index}__].answer}">
+    </div>
 
+</fieldset>
+</form>
 
-<script>
-    function myFunction() {
-        var txt;
-        var person = prompt("Please enter your name:", "Harry Potter");
-        if (person == null || person == "") {
-            txt = "User cancelled the prompt.";
-        } else {
-            txt = "Hello " + person + "! How are you today?";
-        }
-        document.getElementById("demo").innerHTML = txt;
-    }
-
-
-</script>
-
+<!--<script>-->
+<!--function myFunction() {-->
+<!--var txt;-->
+<!--var person = prompt(document.getElementById("question").value, "Answer here");-->
+<!--if (person == null || person == "") {-->
+<!--txt = "Applicant chose not to answer this question";-->
+<!--} else {-->
+<!--txt = person;-->
+<!--}-->
+<!--document.getElementById("answer").innerHTML = txt;-->
+<!--}-->
+<!--</script>-->
 
 <!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
 <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
@@ -66,6 +74,6 @@
     <!--</div>-->
 <!--</div>-->
 
-
+<th:block th:replace="base :: bootstrap">...</th:block>
 </body>
 </html>

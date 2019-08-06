@@ -11,14 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @Controller
 public class HpJobPositionController {
+
     @Autowired
      JobPositionRepository jobPositionRepository;
     @Autowired
      UserService userService;
-    //
+
     @GetMapping("/jobPositionForm")
     public String addJobPosition(Model model){
         model.addAttribute("job", new JobPosition());
@@ -26,19 +28,21 @@ public class HpJobPositionController {
     }
     @PostMapping("/processJobPosition")
     public String processJobPosition(@Valid JobPosition jobPosition, BindingResult result){
+
         if(result.hasErrors()){
             return "jobPositionForm";
         }
         jobPositionRepository.save(jobPosition);
-        return "redirect:/";
+        return "redirect:/home";
     }
      //
-    @RequestMapping("/processJobPosition")
+    @RequestMapping("/apply/{id}")
     public String jobPositionDetail(@PathVariable("id") long id, Model model){
-        model.addAttribute("jobs",jobPositionRepository.findAll());
+        model.addAttribute("job", jobPositionRepository.findById(id).get());
         if(userService.getUser()!=null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
+
         return "processJobPosition";
     }
     @RequestMapping("/update/{id}")
@@ -49,10 +53,30 @@ public class HpJobPositionController {
     @RequestMapping("/delete/{id}")
     public String delJobPosition(@PathVariable("id") long id){
         jobPositionRepository.deleteById(id);
-        return "redirect:/";
+        return "redirect:/home";
     }
 
-
+//    @PostMapping("/apply")
+//    public String apply(){
+//        ArrayList<String> test = new ArrayList<>();
+////
+//        for(String word: userService.getUser().getActiveResume().split(" ")) {
+//            test.add(word);
+//        }
+//
+//        double i =0;
+//        for(String word : JobPosition.keyword){
+//            if(test.contains(word)){
+//                i++;
+//            }
+//        }
+//        if((keyword.size / i) >= .8){
+//            interview.setStatus("Pending interview");
+//        }
+//        else {
+//            interview.setStatus("Rejected");
+//        }
+//    }
 
 
 

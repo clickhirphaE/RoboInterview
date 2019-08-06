@@ -5,14 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Set;
 
 @Controller
 public class DanController {
@@ -32,6 +32,9 @@ public class DanController {
     @Autowired
     QuestionRepository questionRepository;
 
+    @Autowired
+    JobPositionRepository jobPositionRepository;
+
     //    New Resume Form
     @GetMapping("/resumeform")
     public String addResume( Model model){
@@ -49,6 +52,7 @@ public class DanController {
             resume.setUser(user);
         }
 
+        user.setActiveResume(resume.getTitle());
         resume.setInfo(resume.toString(user));
         resumeRepository.save(resume);
         return "redirect:/home";
@@ -59,11 +63,17 @@ public class DanController {
     public String addInterview(Model model){
         model.addAttribute("interview", new Interview());
         model.addAttribute("user_id", userService.getUser().getId());
+
         return "interviewform";
     }
     @PostMapping("/processinterview")
     public String processInterview(@Valid Interview interview){
 
+        User user = userService.getUser();
+
+        if(interview.getUser()==null){
+            interview.setUser(user);
+        }
 
         //Adding interview questions
 
@@ -71,16 +81,22 @@ public class DanController {
         question.setPrompt("What is your favorite color?");
         question.setInterview(interview);
         questionRepository.save(question);
+        interview.setQuestions(question);
+        interviewRepository.save(interview);
 
         question = new Question();
         question.setPrompt("Where will you be in 5 years");
         question.setInterview(interview);
         questionRepository.save(question);
+        interview.setQuestions(question);
+        interviewRepository.save(interview);
 
         question = new Question();
         question.setPrompt("Why do you want to work here?");
         question.setInterview(interview);
         questionRepository.save(question);
+        interview.setQuestions(question);
+        interviewRepository.save(interview);
 
         //Start interview timer
 //        interview.setStartTime(LocalDateTime.now());
@@ -93,14 +109,30 @@ public class DanController {
 
         interview.setStatus("Submitted");
 
+//
+
+
+        interview.setResume(userService.getUser().getActiveResume());
         interviewRepository.save(interview);
+
         return "redirect:/home";
+
     }
+
+
     //    Main Home Page
     @RequestMapping("/home")
     public String index(Model model){
         model.addAttribute("resumes", resumeRepository.findAll());
-        model.addAttribute("interviews", interviewRepository.findAll());
+        model.addAttribute("interviews", userService.getUser().getInterviews());
+        model.addAttribute("jobpositions",jobPositionRepository.findAll());
+        model.addAttribute("user_id", userService.getUser());
+
+        if (userService.getUser() == null) {
+            return "login";
+        } else {
+            return "index";
+        }
 
         //Tracks interview Times
 //        for (Interview interview:interviewRepository.findAll()) {
@@ -110,35 +142,56 @@ public class DanController {
 //
 //            interview.setCheckTime((n/60));
 //        }
-        return "index";
     }
 
-    @GetMapping("/interviewpopup")
-    public String popup(Model model, Interview interview ){
+    @GetMapping("/interviewpopup/{id}")
+    public String popup(@PathVariable("id") long id, Model model){
+
+        Interview interview = interviewRepository.findById(id);
+
+//        for (Question q : interview.getQuestions()){
+//
+//        }
+
         model.addAttribute("interview", interview);
+//        model.addAttribute("questions", interview.getQuestions());
 
-        for(Question question : interview.getQuestions()){
-
-            if(question.getAnswer().isEmpty()){
-                model.addAttribute("question", question);
-            }
-        }
 
         return "interviewpopup";
     }
 
     @PostMapping("/processpopup")
-    public String processpopup(Interview interview){
+    public String processpopup(@ModelAttribute Interview interview) {
+
+        interview.setStatus("Under Review");
         for(Question question : interview.getQuestions()){
-            if(question.getAnswer().isEmpty()){
-                return "redirect:/interviewpopup";
-            }
-            else {questionRepository.save(question);}
-            }
+            System.out.println(question.getAnswer());
+            questionRepository.save(question);
+        }
 
-        return "redirect:/index";
 
+        interviewRepository.save(interview)    ;
+            return "redirect:/home";
+        }
+
+
+
+    @GetMapping("/resumeselection")
+        public String resumeSelection(Model model){
+            model.addAttribute("resumes", userService.getUser().getResumes());
+            model.addAttribute("user", userService.getUser());
+
+            return "resumeselection";
     }
+
+    @PostMapping("/processselection")
+        public String processSelection(User user){
+
+        userRepository.save(user);
+
+        return "redirect:/home";
+    }
+
 
 
 
