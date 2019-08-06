@@ -77,35 +77,16 @@ public class DanController {
 
         //Adding interview questions
 
-        Question question = new Question();
-        question.setPrompt("What is your favorite color?");
-        question.setInterview(interview);
-        questionRepository.save(question);
-        interview.setQuestions(question);
-        interviewRepository.save(interview);
 
-        question = new Question();
-        question.setPrompt("Where will you be in 5 years");
-        question.setInterview(interview);
-        questionRepository.save(question);
-        interview.setQuestions(question);
-        interviewRepository.save(interview);
-
-        question = new Question();
-        question.setPrompt("Why do you want to work here?");
-        question.setInterview(interview);
-        questionRepository.save(question);
-        interview.setQuestions(question);
-        interviewRepository.save(interview);
 
         //Start interview timer
-//        interview.setStartTime(LocalDateTime.now());
+        interview.setStartTime(LocalDateTime.now());
 //       char[] dateChar= interview.getDateEntry().toCharArray();
 //       dateChar[10] = " ";
 
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 //        interview.setStartTime(LocalDateTime.parse(interview.getDateEntry(), formatter));
-//        interview.setEndTime(LocalDateTime.now().plusHours(2));
+        interview.setEndTime(LocalDateTime.now().plusHours(2));
 
         interview.setStatus("Submitted");
 

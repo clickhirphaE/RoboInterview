@@ -22,6 +22,8 @@ public class HpJobPositionController {
      UserService userService;
     @Autowired
     InterviewRepository interviewRepository;
+    @Autowired
+    QuestionRepository questionRepository;
 
     @GetMapping("/jobPositionForm")
     public String addJobPosition(Model model){
@@ -57,6 +59,11 @@ public class HpJobPositionController {
         jobPositionRepository.deleteById(id);
         return "redirect:/home";
     }
+    @GetMapping("/profile")
+    public String profile(Model model){
+
+        return "profile";
+    }
 
     @RequestMapping("/finalapply/{id}")
     public String apply(@PathVariable("id") long id, Model model){
@@ -77,6 +84,29 @@ public class HpJobPositionController {
             Interview interview = new Interview();
             interview.setJobPosition(jobPositionRepository.findById(id));
             interview.setUser(userService.getUser());
+
+            Question question = new Question();
+            question.setPrompt("What is your favorite color?");
+            question.setInterview(interview);
+            questionRepository.save(question);
+            interview.setQuestions(question);
+            interviewRepository.save(interview);
+
+            question = new Question();
+            question.setPrompt("Where will you be in 5 years");
+            question.setInterview(interview);
+            questionRepository.save(question);
+            interview.setQuestions(question);
+            interviewRepository.save(interview);
+
+            question = new Question();
+            question.setPrompt("Why do you want to work here?");
+            question.setInterview(interview);
+            questionRepository.save(question);
+            interview.setQuestions(question);
+            interviewRepository.save(interview);
+
+
             model.addAttribute("interview", interview);
             return "interviewform";
         }
