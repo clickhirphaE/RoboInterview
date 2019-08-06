@@ -109,24 +109,7 @@ public class DanController {
 
         interview.setStatus("Submitted");
 
-//        ArrayList<String> test = new ArrayList<>();
 //
-//        for(String word: userService.getUser().getActiveResume().split(" ")) {
-//            test.add(word);
-//        }
-//
-//        double i =0;
-//        for(String word : JobPosition.keywords){
-//            if(test.contains(word)){
-//                i++;
-//            }
-//        }
-//        if((keywords.size / i) >= .8){
-//            interview.setStatus("Pending interview");
-//        }
-//        else {
-//            interview.setStatus("Rejected");
-//        }
 
 
         interview.setResume(userService.getUser().getActiveResume());

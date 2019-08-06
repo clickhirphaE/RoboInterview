@@ -84,7 +84,7 @@ public class Resume {
     }
 
     public String toString(User user){
-        String infoString = "Information: \nName:  " + user.getFirstName() + " " + user.getLastName() + "\nEmail:  " + user.getEmail() + "\nPhone Number:  " + user.getPhone();
+        String infoString = "Name:  " + user.getFirstName() + " " + user.getLastName() + "\nEmail:  " + user.getEmail() + "\nPhone Number:  " + user.getPhone();
         return infoString;
     }
 }

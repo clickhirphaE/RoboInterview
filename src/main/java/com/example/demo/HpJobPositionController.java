@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @Controller
 public class HpJobPositionController {
+
     @Autowired
      JobPositionRepository jobPositionRepository;
     @Autowired
      UserService userService;
+
     @GetMapping("/jobPositionForm")
     public String addJobPosition(Model model){
         model.addAttribute("job", new JobPosition());
@@ -33,9 +36,9 @@ public class HpJobPositionController {
         return "redirect:/home";
     }
      //
-    @RequestMapping("/processJobPosition")
+    @GetMapping("/apply/{id}")
     public String jobPositionDetail(@PathVariable("id") long id, Model model){
-        model.addAttribute("jobs",jobPositionRepository.findAll());
+        model.addAttribute("jobs",jobPositionRepository.findById(id));
         if(userService.getUser()!=null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
@@ -53,7 +56,27 @@ public class HpJobPositionController {
         return "redirect:/home";
     }
 
-
+//    @PostMapping("/apply")
+//    public String apply(){
+//        ArrayList<String> test = new ArrayList<>();
+////
+//        for(String word: userService.getUser().getActiveResume().split(" ")) {
+//            test.add(word);
+//        }
+//
+//        double i =0;
+//        for(String word : JobPosition.keyword){
+//            if(test.contains(word)){
+//                i++;
+//            }
+//        }
+//        if((keyword.size / i) >= .8){
+//            interview.setStatus("Pending interview");
+//        }
+//        else {
+//            interview.setStatus("Rejected");
+//        }
+//    }
 
 
 

@@ -2,9 +2,7 @@ package com.example.demo;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class JobPosition {
@@ -17,7 +15,7 @@ public class JobPosition {
 
     private String title;
 
-    private Set<String> keyword;
+    private ArrayList<String> keyword;
 
     private Double salary;
 
@@ -36,8 +34,8 @@ public class JobPosition {
     private Set<Interview> jobInterviews;
   //  private Set<JobList> joblist;
     public JobPosition(){
-      keyword = new HashSet<String>();
-
+      keyword = new ArrayList<>();
+      jobInterviews = new HashSet<>();
     }
 
     public JobPosition(String company, String title, Double salary, String jobType, String description, String address,String posteddate) {
@@ -49,14 +47,15 @@ public class JobPosition {
         this.address = address;
         this.posteddate = posteddate;
 //        this.jobInterviews = jobInterviews;
-        keyword = new HashSet<String>();
+        keyword = new ArrayList<>();
+        jobInterviews = new HashSet<>();
     }
 
 
     public long getId() {
         return id;
     }
-    public Set<String> getKeywords() {
+    public ArrayList<String> getKeywords() {
         return keyword;
     }
 

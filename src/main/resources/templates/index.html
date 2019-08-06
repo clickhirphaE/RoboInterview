@@ -81,7 +81,7 @@
                 </div>
                 <div sec:authorize="hasAuthority('USER')">
                     <span>
-                        <a th:href="@{/resumeform}"
+                        <a th:href="@{/apply/{id}(id=${jobs.id})}"
                            class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Apply</a>
                     </span>
                 </div>

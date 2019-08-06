@@ -2,7 +2,6 @@ package com.example.demo;
 
 
 
-import com.sun.org.apache.xpath.internal.operations.String;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -75,5 +74,6 @@ public class DataLoader implements CommandLineRunner {
         jobPositionRepository.save(position);
 
     }
+
 }
 
