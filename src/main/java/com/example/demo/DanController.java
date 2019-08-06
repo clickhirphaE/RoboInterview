@@ -128,6 +128,11 @@ public class DanController {
         model.addAttribute("jobpositions",jobPositionRepository.findAll());
         model.addAttribute("user_id", userService.getUser());
 
+        if (userService.getUser() == null) {
+            return "login";
+        } else {
+            return "index";
+        }
 
         //Tracks interview Times
 //        for (Interview interview:interviewRepository.findAll()) {
@@ -137,7 +142,6 @@ public class DanController {
 //
 //            interview.setCheckTime((n/60));
 //        }
-        return "index";
     }
 
     @GetMapping("/interviewpopup/{id}")

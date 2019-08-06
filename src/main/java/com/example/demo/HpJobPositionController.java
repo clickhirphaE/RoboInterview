@@ -36,9 +36,9 @@ public class HpJobPositionController {
         return "redirect:/home";
     }
      //
-    @GetMapping("/apply/{id}")
+    @RequestMapping("/apply/{id}")
     public String jobPositionDetail(@PathVariable("id") long id, Model model){
-        model.addAttribute("jobs",jobPositionRepository.findById(id));
+        model.addAttribute("job", jobPositionRepository.findById(id).get());
         if(userService.getUser()!=null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }

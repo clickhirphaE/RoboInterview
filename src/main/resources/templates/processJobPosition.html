@@ -16,32 +16,32 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
-          <tr th:each="job : ${jobs}">
+        <div class="col-6 col-sm-3"></div>
+          <tr th:object="${job}">
               <!--users not allowed to update or delete-->
               <th:block sec:authorize="isAuthenticated()">
-              <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+              <div class="col-6 col-sm-3"></div>
               <div class="w-100"></div>
-            <td th:text="${job.company}"></td>
-              <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+            Company: <td th:text="${job.company}"></td>
+              <div class="col-6 col-sm-3"></div>
               <div class="w-100"></div>
-            <td th:text="${job.title}"></td>
-              <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+            Title: <td th:text="${job.title}"></td>
+              <div class="col-6 col-sm-3"></div>
               <div class="w-100"></div>
-            <td th:text="${job.salary}"></td>
-              <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+            Salary: <td th:text="${job.salary}"></td>
+              <div class="col-6 col-sm-3"></div>
               <div class="w-100"></div>
-            <td th:text="${job.jobType}"></td>
-              <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+            Job Type: <td th:text="${job.jobType}"></td>
+              <div class="col-6 col-sm-3"></div>
               <div class="w-100"></div>
             <td th:text="${job.description}"></td>
-              <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+              <div class="col-6 col-sm-3"></div>
               <div class="w-100"></div>
-            <td th:text="${job.keywords}"></td>
-              <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+            <!--<td th:text="${job.keywords}"></td>-->
+              <div class="col-6 col-sm-3"></div>
               <div class="w-100"></div>
             <td th:text="${job.address}"></td>
-              <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+              <div class="col-6 col-sm-3"></div>
               <div class="w-100"></div>
             <td th:text="${job.posteddate}"></td>
                   <!--when user clicks the apply button it renders to the resume form-->
