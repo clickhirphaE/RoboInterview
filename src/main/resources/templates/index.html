@@ -133,6 +133,8 @@
 
                     <!--</div>-->
                     <p>Your application has been: <b>[[${interview.status}]]</b></p>
+                    <a th:href="@{/interviewpopup/{id}(id=${interview.id})}">Take Interview</a>
+                    <p>Your interview will expire at: </p>
                     <span th:text="${interview.dateEntry}"></span>
                 </div>
                 <div class="modal-footer" >

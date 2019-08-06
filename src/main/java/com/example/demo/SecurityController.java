@@ -23,8 +23,8 @@ public class SecurityController {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    CloudinaryConfig cloudc;
+//    @Autowired
+//    CloudinaryConfig cloudc;
 
     @GetMapping("/register")
     public String showRegistrationPage(Model model) {
@@ -33,8 +33,7 @@ public class SecurityController {
     }
 
     @PostMapping("/register")
-    public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model,
-    MultipartFile file) {
+    public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
         model.addAttribute("user", user);
         if (result.hasErrors()) {
             return "registration";
@@ -42,19 +41,19 @@ public class SecurityController {
             userService.saveUser(user);
             model.addAttribute("user", "User Account Created");
         }
-
-        if (file.isEmpty()) {
-            return "redirect:/register";
-        }
-        try {
-            Map uploadResult = cloudc.upload(file.getBytes(),
-                    ObjectUtils.asMap("resourcetype", "auto"));
-            user.setPic(uploadResult.get("url").toString());
-            userRepository.save(user);
-        } catch (IOException e) {
-            e.printStackTrace();
-//            return "redirect:/";
-        }
+//
+//        if (file.isEmpty()) {
+//            return "redirect:/register";
+//        }
+//        try {
+//            Map uploadResult = cloudc.upload(file.getBytes(),
+//                    ObjectUtils.asMap("resourcetype", "auto"));
+//            user.setPic(uploadResult.get("url").toString());
+//            userRepository.save(user);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+////            return "redirect:/";
+//        }
 
         return "redirect:/home";
     }

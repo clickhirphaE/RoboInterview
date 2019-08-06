@@ -152,6 +152,7 @@ public class DanController {
 
 
         interviewRepository.save(interview)    ;
+        SendMail.main();
             return "redirect:/home";
         }
 
